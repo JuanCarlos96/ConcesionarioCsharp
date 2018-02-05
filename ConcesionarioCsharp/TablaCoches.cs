@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace ConcesionarioCsharp
 {
-    public partial class Form1 : Form
+    public partial class TablaCoches : Form
     {
-        public Form1()
+        private EditarCoche editarCoche = new EditarCoche();
+
+        public TablaCoches()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            editarCoche.ShowDialog();
         }
     }
 }

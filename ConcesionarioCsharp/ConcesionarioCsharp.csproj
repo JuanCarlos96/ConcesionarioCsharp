@@ -45,16 +45,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarVenta.Designer.cs">
+      <DependentUpon>EditarVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarCoche.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarCoche.Designer.cs">
+      <DependentUpon>EditarCoche.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarRevision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarRevision.Designer.cs">
+      <DependentUpon>EditarRevision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarCliente.Designer.cs">
+      <DependentUpon>EditarCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TablaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablaClientes.Designer.cs">
+      <DependentUpon>TablaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablaCoches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablaCoches.Designer.cs">
+      <DependentUpon>TablaCoches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablaRevisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablaRevisiones.Designer.cs">
+      <DependentUpon>TablaRevisiones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablaVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablaVentas.Designer.cs">
+      <DependentUpon>TablaVentas.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarVenta.resx">
+      <DependentUpon>EditarVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarCoche.resx">
+      <DependentUpon>EditarCoche.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarRevision.resx">
+      <DependentUpon>EditarRevision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarCliente.resx">
+      <DependentUpon>EditarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,6 +125,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TablaClientes.resx">
+      <DependentUpon>TablaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablaCoches.resx">
+      <DependentUpon>TablaCoches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablaRevisiones.resx">
+      <DependentUpon>TablaRevisiones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablaVentas.resx">
+      <DependentUpon>TablaVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
