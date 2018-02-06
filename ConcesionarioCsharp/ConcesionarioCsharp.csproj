@@ -124,6 +124,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TablaClientes.resx">
       <DependentUpon>TablaClientes.cs</DependentUpon>
@@ -149,6 +150,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tools-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoice-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favicon-32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-tools-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-invoice-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
