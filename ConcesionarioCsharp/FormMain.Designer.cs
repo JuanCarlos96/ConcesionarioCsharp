@@ -180,7 +180,7 @@
             this.ventas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ventas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ventas.Name = "ventas";
-            this.ventas.Size = new System.Drawing.Size(46, 51);
+            this.ventas.Size = new System.Drawing.Size(45, 51);
             this.ventas.Text = "Ventas";
             this.ventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ventas.Click += new System.EventHandler(this.ventas_Click);
@@ -211,9 +211,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 420);
+            this.ClientSize = new System.Drawing.Size(829, 421);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
