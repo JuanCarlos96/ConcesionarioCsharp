@@ -38,10 +38,10 @@
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.nuevoCoche = new System.Windows.Forms.ToolStripButton();
             this.nuevaVenta = new System.Windows.Forms.ToolStripButton();
             this.nuevaRevision = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.coches = new System.Windows.Forms.ToolStripButton();
             this.ventas = new System.Windows.Forms.ToolStripButton();
             this.revisiones = new System.Windows.Forms.ToolStripButton();
@@ -101,13 +101,13 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.manualToolStripMenuItem.Text = "Manual";
             // 
             // toolStrip1
@@ -126,11 +126,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(829, 54);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // nuevoCoche
             // 
@@ -162,6 +157,11 @@
             this.nuevaRevision.Name = "nuevaRevision";
             this.nuevaRevision.Size = new System.Drawing.Size(36, 51);
             this.nuevaRevision.Text = "toolStripButton3";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // coches
             // 
@@ -215,6 +215,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Concesionario";

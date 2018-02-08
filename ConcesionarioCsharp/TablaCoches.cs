@@ -19,6 +19,8 @@ namespace ConcesionarioCsharp
             InitializeComponent();
         }
 
+        public Interfaz Opener { get; set; }
+
         private void button2_Click(object sender, EventArgs e)
         {
             editarCoche.ShowDialog();
