@@ -173,5 +173,26 @@
   <ItemGroup>
     <None Include="Resources\add-icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manual-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

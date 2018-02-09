@@ -23,7 +23,8 @@ namespace ConcesionarioCsharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            editarVenta.ShowDialog();
+            Opener.pasadatos("ventas");
+            //editarVenta.ShowDialog();
         }
     }
 }

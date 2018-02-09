@@ -115,7 +115,23 @@ namespace ConcesionarioCsharp
 
         public void pasadatos(string arg1)
         {
-            throw new NotImplementedException();
+            switch (arg1)
+            {
+                case "coches":
+                    this.nuevoCoche.Enabled = false;
+                    break;
+                case "revisiones":
+                    this.nuevaRevision.Enabled = false;
+                    break;
+                case "ventas":
+                    this.nuevaVenta.Enabled = false;
+                    break;
+                default:
+                    this.nuevoCoche.Enabled = true;
+                    this.nuevaRevision.Enabled = true;
+                    this.nuevaVenta.Enabled = true;
+                    break;
+            }
         }
     }
 }

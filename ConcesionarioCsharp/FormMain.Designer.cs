@@ -31,21 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reiniciarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.nuevoCoche = new System.Windows.Forms.ToolStripButton();
+            this.nuevaRevision = new System.Windows.Forms.ToolStripButton();
+            this.nuevaVenta = new System.Windows.Forms.ToolStripButton();
+            this.coches = new System.Windows.Forms.ToolStripButton();
+            this.revisiones = new System.Windows.Forms.ToolStripButton();
+            this.ventas = new System.Windows.Forms.ToolStripButton();
+            this.clientes = new System.Windows.Forms.ToolStripButton();
+            this.reiniciarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.nuevoCoche = new System.Windows.Forms.ToolStripButton();
-            this.nuevaVenta = new System.Windows.Forms.ToolStripButton();
-            this.nuevaRevision = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.coches = new System.Windows.Forms.ToolStripButton();
-            this.ventas = new System.Windows.Forms.ToolStripButton();
-            this.revisiones = new System.Windows.Forms.ToolStripButton();
-            this.clientes = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -71,18 +71,6 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(60, 20);
             this.toolStripMenuItem1.Text = "&Archivo";
             // 
-            // reiniciarBaseDeDatosToolStripMenuItem
-            // 
-            this.reiniciarBaseDeDatosToolStripMenuItem.Name = "reiniciarBaseDeDatosToolStripMenuItem";
-            this.reiniciarBaseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(195, 23);
-            this.reiniciarBaseDeDatosToolStripMenuItem.Text = "Reiniciar Base de Datos";
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(255, 23);
-            this.salirToolStripMenuItem.Text = "Salir";
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -98,34 +86,27 @@
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ay&uda";
             // 
-            // acercaDeToolStripMenuItem
-            // 
-            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.acercaDeToolStripMenuItem.Text = "Acerca de";
-            // 
-            // manualToolStripMenuItem
-            // 
-            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.manualToolStripMenuItem.Text = "Manual";
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoCoche,
-            this.nuevaVenta,
             this.nuevaRevision,
+            this.nuevaVenta,
             this.toolStripSeparator1,
             this.coches,
-            this.ventas,
             this.revisiones,
+            this.ventas,
             this.clientes});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(829, 54);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // nuevoCoche
             // 
@@ -138,16 +119,6 @@
             this.nuevoCoche.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.nuevoCoche.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // nuevaVenta
-            // 
-            this.nuevaVenta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nuevaVenta.Image = global::ConcesionarioCsharp.Properties.Resources.add_invoice_icon;
-            this.nuevaVenta.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.nuevaVenta.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.nuevaVenta.Name = "nuevaVenta";
-            this.nuevaVenta.Size = new System.Drawing.Size(36, 51);
-            this.nuevaVenta.Text = "toolStripButton2";
-            // 
             // nuevaRevision
             // 
             this.nuevaRevision.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -158,10 +129,15 @@
             this.nuevaRevision.Size = new System.Drawing.Size(36, 51);
             this.nuevaRevision.Text = "toolStripButton3";
             // 
-            // toolStripSeparator1
+            // nuevaVenta
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
+            this.nuevaVenta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.nuevaVenta.Image = global::ConcesionarioCsharp.Properties.Resources.add_invoice_icon;
+            this.nuevaVenta.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.nuevaVenta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.nuevaVenta.Name = "nuevaVenta";
+            this.nuevaVenta.Size = new System.Drawing.Size(36, 51);
+            this.nuevaVenta.Text = "toolStripButton2";
             // 
             // coches
             // 
@@ -174,17 +150,6 @@
             this.coches.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.coches.Click += new System.EventHandler(this.coches_Click);
             // 
-            // ventas
-            // 
-            this.ventas.Image = global::ConcesionarioCsharp.Properties.Resources.invoice_icon;
-            this.ventas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ventas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ventas.Name = "ventas";
-            this.ventas.Size = new System.Drawing.Size(45, 51);
-            this.ventas.Text = "Ventas";
-            this.ventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.ventas.Click += new System.EventHandler(this.ventas_Click);
-            // 
             // revisiones
             // 
             this.revisiones.Image = global::ConcesionarioCsharp.Properties.Resources.tools_icon;
@@ -196,6 +161,17 @@
             this.revisiones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.revisiones.Click += new System.EventHandler(this.revisiones_Click);
             // 
+            // ventas
+            // 
+            this.ventas.Image = global::ConcesionarioCsharp.Properties.Resources.invoice_icon;
+            this.ventas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ventas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ventas.Name = "ventas";
+            this.ventas.Size = new System.Drawing.Size(46, 51);
+            this.ventas.Text = "Ventas";
+            this.ventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ventas.Click += new System.EventHandler(this.ventas_Click);
+            // 
             // clientes
             // 
             this.clientes.Image = global::ConcesionarioCsharp.Properties.Resources.client_icon1;
@@ -206,6 +182,38 @@
             this.clientes.Text = "Clientes";
             this.clientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.clientes.Click += new System.EventHandler(this.clientes_Click);
+            // 
+            // reiniciarBaseDeDatosToolStripMenuItem
+            // 
+            this.reiniciarBaseDeDatosToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.refresh_icon2;
+            this.reiniciarBaseDeDatosToolStripMenuItem.Name = "reiniciarBaseDeDatosToolStripMenuItem";
+            this.reiniciarBaseDeDatosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.reiniciarBaseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.reiniciarBaseDeDatosToolStripMenuItem.Text = "&Reiniciar Base de Datos";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.exit_icon;
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.salirToolStripMenuItem.Text = "&Salir";
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            this.acercaDeToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.about_icon;
+            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            this.acercaDeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.acercaDeToolStripMenuItem.Text = "&Acerca de";
+            // 
+            // manualToolStripMenuItem
+            // 
+            this.manualToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.pdf_icon;
+            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
+            this.manualToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.manualToolStripMenuItem.Text = "&Manual";
             // 
             // FormMain
             // 
@@ -233,8 +241,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripTextBox reiniciarBaseDeDatosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox salirToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton nuevoCoche;
         private System.Windows.Forms.ToolStripButton nuevaVenta;
@@ -248,6 +254,8 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton coches;
+        private System.Windows.Forms.ToolStripMenuItem reiniciarBaseDeDatosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
     }
 }
 

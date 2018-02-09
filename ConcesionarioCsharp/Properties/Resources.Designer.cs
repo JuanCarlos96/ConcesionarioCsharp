@@ -63,6 +63,16 @@ namespace ConcesionarioCsharp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap about_icon {
+            get {
+                object obj = ResourceManager.GetObject("about-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_icon {
             get {
                 object obj = ResourceManager.GetObject("add-icon", resourceCulture);
@@ -113,6 +123,16 @@ namespace ConcesionarioCsharp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap exit_icon {
+            get {
+                object obj = ResourceManager.GetObject("exit-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap favicon_32x32 {
             get {
                 object obj = ResourceManager.GetObject("favicon-32x32", resourceCulture);
@@ -126,6 +146,56 @@ namespace ConcesionarioCsharp.Properties {
         internal static System.Drawing.Bitmap invoice_icon {
             get {
                 object obj = ResourceManager.GetObject("invoice-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap manual_icon {
+            get {
+                object obj = ResourceManager.GetObject("manual-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdf_icon {
+            get {
+                object obj = ResourceManager.GetObject("pdf-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_icon {
+            get {
+                object obj = ResourceManager.GetObject("refresh-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("refresh-icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_icon2 {
+            get {
+                object obj = ResourceManager.GetObject("refresh-icon2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
