@@ -1,12 +1,4 @@
-﻿using Finisar.SQLite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace ConcesionarioCsharp
@@ -22,6 +14,7 @@ namespace ConcesionarioCsharp
         public FormMain()
         {
             InitializeComponent();
+            con = new ConectorSQLite();
             tablaCoches = this.iniciar_coches();
             tablaVentas = this.iniciar_ventas();
             tablaRevisiones = this.iniciar_revisiones();
@@ -52,7 +45,7 @@ namespace ConcesionarioCsharp
 
         private TablaCoches iniciar_coches()
         {
-            tablaCoches = new TablaCoches(con);
+            tablaCoches = new TablaCoches(this.con);
             tablaCoches.MdiParent = this;
             tablaCoches.FormBorderStyle = FormBorderStyle.None;
             tablaCoches.Dock = DockStyle.Fill;
@@ -62,7 +55,7 @@ namespace ConcesionarioCsharp
 
         private TablaVentas iniciar_ventas()
         {
-            tablaVentas = new TablaVentas();
+            tablaVentas = new TablaVentas(this.con);
             tablaVentas.MdiParent = this;
             tablaVentas.FormBorderStyle = FormBorderStyle.None;
             tablaVentas.Dock = DockStyle.Fill;
@@ -72,7 +65,7 @@ namespace ConcesionarioCsharp
 
         private TablaRevisiones iniciar_revisiones()
         {
-            tablaRevisiones = new TablaRevisiones();
+            tablaRevisiones = new TablaRevisiones(this.con);
             tablaRevisiones.MdiParent = this;
             tablaRevisiones.FormBorderStyle = FormBorderStyle.None;
             tablaRevisiones.Dock = DockStyle.Fill;
@@ -82,7 +75,7 @@ namespace ConcesionarioCsharp
 
         private TablaClientes iniciar_clientes()
         {
-            tablaClientes = new TablaClientes();
+            tablaClientes = new TablaClientes(this.con);
             tablaClientes.MdiParent = this;
             tablaClientes.FormBorderStyle = FormBorderStyle.None;
             tablaClientes.Dock = DockStyle.Fill;

@@ -1,12 +1,7 @@
 ﻿using Finisar.SQLite;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConcesionarioCsharp
@@ -20,7 +15,6 @@ namespace ConcesionarioCsharp
 
         public TablaCoches(ConectorSQLite con)
         {
-            button2.Hide();
             conector = con;
             InitializeComponent();
             string sql;
@@ -40,6 +34,22 @@ namespace ConcesionarioCsharp
             dtRecord = new DataTable();
             DataAdap.Fill(dtRecord);
             dataGridView1.DataSource = dtRecord;
+            //Ponemos la columna de la PK a solo lectura para evitar problemas (repetición de números o que pueda modificarlo)
+            dataGridView1.Columns["N_Bastidor"].ReadOnly = true;
+            dataGridView1.Columns["N_Bastidor"].DefaultCellStyle.BackColor = Color.Gray;
+
+            //Personalización de Columnas
+            //Como las columnas solamente se conocen en tiempo de ejecución, le tengo que dar aquí los anchos
+            dataGridView1.Columns[0].Width = 140;
+            dataGridView1.Columns[0].HeaderText = "Bastidor";
+            dataGridView1.Columns[1].Width = 100;//MARCA
+            dataGridView1.Columns[2].Width = 90;//MODELO
+            dataGridView1.Columns[3].Width = 90;//MOTOR
+            dataGridView1.Columns[4].Width = 40;//CABALLOS
+            dataGridView1.Columns[5].Width = 90;//TIPO
+            dataGridView1.Columns[6].Width = 80;//COLOR
+            dataGridView1.Columns[7].Width = 53;//PRECIO
+            dataGridView1.Columns[8].Width = 100;//IMAGEN
         }
 
         private void button2_Click(object sender, EventArgs e)

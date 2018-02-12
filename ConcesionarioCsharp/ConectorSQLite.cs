@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConcesionarioCsharp
 {
-    class ConectorSQLite
+    public class ConectorSQLite
     {
         private SQLiteConnection sqlite_con; //Conexión
         private SQLiteCommand consulta; //Comando
