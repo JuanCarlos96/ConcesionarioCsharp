@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Finisar.SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace ConcesionarioCsharp
         private TablaVentas tablaVentas;
         private TablaRevisiones tablaRevisiones;
         private TablaClientes tablaClientes;
+        private ConectorSQLite con;
 
         public FormMain()
         {
@@ -50,7 +52,7 @@ namespace ConcesionarioCsharp
 
         private TablaCoches iniciar_coches()
         {
-            tablaCoches = new TablaCoches();
+            tablaCoches = new TablaCoches(con);
             tablaCoches.MdiParent = this;
             tablaCoches.FormBorderStyle = FormBorderStyle.None;
             tablaCoches.Dock = DockStyle.Fill;
