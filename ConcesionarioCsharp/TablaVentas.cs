@@ -47,7 +47,39 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns[1].Width = 103;
             dataGridView1.Columns[1].HeaderText = "DNI";
             dataGridView1.Columns[2].Width = 150;//FECHA
-            dataGridView1.Columns[3].Width = 390;//PRECIO
+            dataGridView1.Columns[3].Width = 360;//PRECIO
+
+            //Columna Bastidor
+            DataGridViewComboBoxColumn comboBastidor = new DataGridViewComboBoxColumn();
+            comboBastidor.Name = "Bastidor";
+            comboBastidor.DataPropertyName = "N_Bastidor";
+            SQLiteCommand consulta2 = conector.DameComando();
+            consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
+            SQLiteDataReader reader = consulta2.ExecuteReader();
+            while (reader.Read())
+            {
+                comboBastidor.Items.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dataGridView1.Columns.RemoveAt(0);
+            dataGridView1.Columns.Insert(0, comboBastidor);
+            dataGridView1.Columns[0].Width = 170;
+
+            //Columna Dni
+            DataGridViewComboBoxColumn comboDni = new DataGridViewComboBoxColumn();
+            comboDni.Name = "DNI";
+            comboDni.DataPropertyName = "Dni";
+            SQLiteCommand consulta3 = conector.DameComando();
+            consulta2.CommandText = "SELECT Dni FROM Cliente";
+            SQLiteDataReader reader2 = consulta2.ExecuteReader();
+            while (reader2.Read())
+            {
+                comboDni.Items.Add(reader2.GetString(0));
+            }
+            reader2.Close();
+            dataGridView1.Columns.RemoveAt(1);
+            dataGridView1.Columns.Insert(1, comboDni);
+            dataGridView1.Columns[1].Width = 103;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -51,6 +51,55 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns[4].HeaderText = "Cambio de filtro";
             dataGridView1.Columns[5].Width = 140;
             dataGridView1.Columns[5].HeaderText = "Bastidor";
+
+            //Columna Revisión de frenos
+            DataGridViewCheckBoxColumn columnacheck = new DataGridViewCheckBoxColumn();
+            columnacheck.HeaderText = "Revisión de frenos";
+            columnacheck.Name = "frenos";
+            columnacheck.DataPropertyName = "Frenos";
+            columnacheck.FalseValue = "No";
+            columnacheck.TrueValue = "Sí";
+            dataGridView1.Columns.RemoveAt(2);
+            dataGridView1.Columns.Insert(2, columnacheck);
+            dataGridView1.Columns[2].Width = 140;
+
+            //Columna Cambio de aceite
+            DataGridViewCheckBoxColumn columnacheck2 = new DataGridViewCheckBoxColumn();
+            columnacheck2.HeaderText = "Cambio de aceite";
+            columnacheck2.Name = "aceite";
+            columnacheck2.DataPropertyName = "Aceite";
+            columnacheck2.FalseValue = "No";
+            columnacheck2.TrueValue = "Sí";
+            dataGridView1.Columns.RemoveAt(3);
+            dataGridView1.Columns.Insert(3, columnacheck2);
+            dataGridView1.Columns[3].Width = 140;
+
+            //Columna Cambio de filtro
+            DataGridViewCheckBoxColumn columnacheck3 = new DataGridViewCheckBoxColumn();
+            columnacheck3.HeaderText = "Cambio de filtro";
+            columnacheck3.Name = "filtro";
+            columnacheck3.DataPropertyName = "Filtro";
+            columnacheck3.FalseValue = "No";
+            columnacheck3.TrueValue = "Sí";
+            dataGridView1.Columns.RemoveAt(4);
+            dataGridView1.Columns.Insert(4, columnacheck3);
+            dataGridView1.Columns[4].Width = 140;
+
+            //Columna Bastidor
+            DataGridViewComboBoxColumn comboBastidor = new DataGridViewComboBoxColumn();
+            comboBastidor.Name = "Bastidor";
+            comboBastidor.DataPropertyName = "N_Bastidor";
+            SQLiteCommand consulta2 = conector.DameComando();
+            consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
+            SQLiteDataReader reader = consulta2.ExecuteReader();
+            while (reader.Read())
+            {
+                comboBastidor.Items.Add(reader.GetString(0));
+            }
+            reader.Close();
+            dataGridView1.Columns.RemoveAt(5);
+            dataGridView1.Columns.Insert(5, comboBastidor);
+            dataGridView1.Columns[5].Width = 170;
         }
 
         private void button1_Click(object sender, EventArgs e)
