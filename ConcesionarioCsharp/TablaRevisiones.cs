@@ -11,7 +11,10 @@ namespace ConcesionarioCsharp
         private EditarRevision editarRevision = new EditarRevision();
         private ConectorSQLite conector;
         private DataTable dtRecord;
+        private DataTable dtRecord2;
         private SQLiteDataAdapter DataAdap;
+        private SQLiteDataAdapter DataAdap2;
+        private AutoCompleteStringCollection autoComplete = new AutoCompleteStringCollection();
 
         public TablaRevisiones(ConectorSQLite con)
         {
@@ -37,6 +40,13 @@ namespace ConcesionarioCsharp
             //Ponemos la columna de la PK a solo lectura para evitar problemas (repetición de números o que pueda modificarlo)
             dataGridView1.Columns["N_Revision"].ReadOnly = true;
             dataGridView1.Columns["N_Revision"].DefaultCellStyle.BackColor = Color.Gray;
+
+            //Combo auxiliar de Bastidores
+            consulta.CommandText = "SELECT N_Bastidor FROM Coche";
+            //SQLiteDataAdapter 
+            DataAdap2 = new SQLiteDataAdapter(consulta);
+            dtRecord2 = new DataTable();
+            DataAdap2.Fill(dtRecord2);
 
             //Personalización de Columnas
             //Como las columnas solamente se conocen en tiempo de ejecución, le tengo que dar aquí los anchos
@@ -86,7 +96,7 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns[4].Width = 140;
 
             //Columna Bastidor
-            DataGridViewComboBoxColumn comboBastidor = new DataGridViewComboBoxColumn();
+            DataGridViewTextBoxColumn comboBastidor = new DataGridViewTextBoxColumn();
             comboBastidor.Name = "Bastidor";
             comboBastidor.DataPropertyName = "N_Bastidor";
             SQLiteCommand consulta2 = conector.DameComando();
@@ -94,7 +104,7 @@ namespace ConcesionarioCsharp
             SQLiteDataReader reader = consulta2.ExecuteReader();
             while (reader.Read())
             {
-                comboBastidor.Items.Add(reader.GetString(0));
+                autoComplete.Add(reader.GetString(0));
             }
             reader.Close();
             dataGridView1.Columns.RemoveAt(5);
@@ -106,6 +116,22 @@ namespace ConcesionarioCsharp
         {
             Opener.pasadatos("revisiones");
             //editarRevision.ShowDialog();
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            int index = dataGridView1.Columns.IndexOf(dataGridView1.CurrentCell.OwningColumn);
+
+            if (index == 5)
+            {
+                TextBox autoText = e.Control as TextBox;//Se genera un textbox desplegable
+                if (autoText != null)
+                {
+                    autoText.AutoCompleteMode = AutoCompleteMode.Suggest;
+                    autoText.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    autoText.AutoCompleteCustomSource = this.autoComplete;//Se asigna la colección al TexBox Desplegable
+                }
+            }
         }
     }
 }
