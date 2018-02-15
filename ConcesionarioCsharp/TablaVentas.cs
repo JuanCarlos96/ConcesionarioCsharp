@@ -11,7 +11,10 @@ namespace ConcesionarioCsharp
         private EditarVenta editarVenta = new EditarVenta();
         private ConectorSQLite conector;
         private DataTable dtRecord;
+        private DataTable dtRecordBastidor;
         private SQLiteDataAdapter DataAdap;
+        private SQLiteDataAdapter DataAdapBastidor;
+        private AutoCompleteStringCollection autoComplete = new AutoCompleteStringCollection();
 
         public TablaVentas(ConectorSQLite con)
         {
@@ -34,6 +37,14 @@ namespace ConcesionarioCsharp
             dtRecord = new DataTable();
             DataAdap.Fill(dtRecord);
             dataGridView1.DataSource = dtRecord;
+
+            //Combo auxiliar de Bastidores (asociado a columna nombreR)
+            consulta.CommandText = "SELECT N_Bastidor FROM Coche";
+            //SQLiteDataAdapter 
+            DataAdapBastidor = new SQLiteDataAdapter(consulta);//Hace de intermediario entre la base de datos y el DataGrid. Mismos 4 pasos que para el DataAdapter anterior
+            dtRecordBastidor = new DataTable();
+            DataAdapBastidor.Fill(dtRecordBastidor);
+
             //Ponemos la columna de la PK a solo lectura para evitar problemas (repetición de números o que pueda modificarlo)
             dataGridView1.Columns["N_Bastidor"].ReadOnly = true;
             dataGridView1.Columns["Dni"].ReadOnly = true;
@@ -50,19 +61,19 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns[3].Width = 360;//PRECIO
 
             //Columna Bastidor
-            DataGridViewComboBoxColumn comboBastidor = new DataGridViewComboBoxColumn();
-            comboBastidor.Name = "Bastidor";
-            comboBastidor.DataPropertyName = "N_Bastidor";
+            DataGridViewTextBoxColumn busqueda = new DataGridViewTextBoxColumn();
+            busqueda.Name = "Bastidor";
+            busqueda.DataPropertyName = "N_Bastidor";
             SQLiteCommand consulta2 = conector.DameComando();
             consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
             SQLiteDataReader reader = consulta2.ExecuteReader();
             while (reader.Read())
             {
-                comboBastidor.Items.Add(reader.GetString(0));
+                autoComplete.Add(reader.GetString(0));
             }
             reader.Close();
             dataGridView1.Columns.RemoveAt(0);
-            dataGridView1.Columns.Insert(0, comboBastidor);
+            dataGridView1.Columns.Insert(0, busqueda);
             dataGridView1.Columns[0].Width = 170;
 
             //Columna Dni
@@ -70,8 +81,8 @@ namespace ConcesionarioCsharp
             comboDni.Name = "DNI";
             comboDni.DataPropertyName = "Dni";
             SQLiteCommand consulta3 = conector.DameComando();
-            consulta2.CommandText = "SELECT Dni FROM Cliente";
-            SQLiteDataReader reader2 = consulta2.ExecuteReader();
+            consulta3.CommandText = "SELECT Dni FROM Cliente";
+            SQLiteDataReader reader2 = consulta3.ExecuteReader();
             while (reader2.Read())
             {
                 comboDni.Items.Add(reader2.GetString(0));
@@ -86,6 +97,23 @@ namespace ConcesionarioCsharp
         {
             Opener.pasadatos("ventas");
             //editarVenta.ShowDialog();
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            string titleText = dataGridView1.Columns[0].Name;
+            //Console.WriteLine(titleText);
+            if (titleText.Equals("Bastidor"))
+            {
+                //data.DataSource).Rows.Clear();
+                TextBox autoText = e.Control as TextBox;//Se genera un textbox desplegable
+                if (autoText != null)
+                {
+                    autoText.AutoCompleteMode = AutoCompleteMode.Suggest;
+                    autoText.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    autoText.AutoCompleteCustomSource = this.autoComplete;//Se asigna la colección al TexBox Desplegable
+                }
+            }
         }
     }
 }
