@@ -34,9 +34,6 @@ namespace ConcesionarioCsharp
             dtRecord = new DataTable();
             DataAdap.Fill(dtRecord);
             dataGridView1.DataSource = dtRecord;
-            //Ponemos la columna de la PK a solo lectura para evitar problemas (repetición de números o que pueda modificarlo)
-            dataGridView1.Columns["Dni"].ReadOnly = true;
-            dataGridView1.Columns["Dni"].DefaultCellStyle.BackColor = Color.Gray;
 
             //Personalización de Columnas
             //Como las columnas solamente se conocen en tiempo de ejecución, le tengo que dar aquí los anchos
@@ -54,6 +51,14 @@ namespace ConcesionarioCsharp
         {
             Opener.pasadatos("clientes");
             //editarCliente.ShowDialog();
+        }
+
+        public void nuevaFila()
+        {
+            DataRow fila = dtRecord.NewRow();
+            dtRecord.Rows.Add(fila);
+            dataGridView1.DataSource = dtRecord;
+            dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
         }
     }
 }

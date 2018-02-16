@@ -35,9 +35,8 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.nuevoCoche = new System.Windows.Forms.ToolStripButton();
-            this.nuevaRevision = new System.Windows.Forms.ToolStripButton();
-            this.nuevaVenta = new System.Windows.Forms.ToolStripButton();
+            this.nuevo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.coches = new System.Windows.Forms.ToolStripButton();
             this.revisiones = new System.Windows.Forms.ToolStripButton();
             this.ventas = new System.Windows.Forms.ToolStripButton();
@@ -89,9 +88,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoCoche,
-            this.nuevaRevision,
-            this.nuevaVenta,
+            this.nuevo,
+            this.toolStripButton1,
             this.toolStripSeparator1,
             this.coches,
             this.revisiones,
@@ -108,36 +106,27 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
-            // nuevoCoche
+            // nuevo
             // 
-            this.nuevoCoche.Image = global::ConcesionarioCsharp.Properties.Resources.add_icon;
-            this.nuevoCoche.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.nuevoCoche.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.nuevoCoche.Name = "nuevoCoche";
-            this.nuevoCoche.Size = new System.Drawing.Size(81, 51);
-            this.nuevoCoche.Text = "Añadir coche";
-            this.nuevoCoche.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            this.nuevoCoche.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.nuevo.Image = global::ConcesionarioCsharp.Properties.Resources.add_icon;
+            this.nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(46, 51);
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.nuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
-            // nuevaRevision
+            // toolStripButton1
             // 
-            this.nuevaRevision.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nuevaRevision.Image = global::ConcesionarioCsharp.Properties.Resources.add_tools_icon;
-            this.nuevaRevision.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.nuevaRevision.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.nuevaRevision.Name = "nuevaRevision";
-            this.nuevaRevision.Size = new System.Drawing.Size(36, 51);
-            this.nuevaRevision.Text = "toolStripButton3";
-            // 
-            // nuevaVenta
-            // 
-            this.nuevaVenta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nuevaVenta.Image = global::ConcesionarioCsharp.Properties.Resources.add_invoice_icon;
-            this.nuevaVenta.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.nuevaVenta.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.nuevaVenta.Name = "nuevaVenta";
-            this.nuevaVenta.Size = new System.Drawing.Size(36, 51);
-            this.nuevaVenta.Text = "toolStripButton2";
+            this.toolStripButton1.Image = global::ConcesionarioCsharp.Properties.Resources.save_icon;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(53, 51);
+            this.toolStripButton1.Text = "Guardar";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // coches
             // 
@@ -242,9 +231,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton nuevoCoche;
-        private System.Windows.Forms.ToolStripButton nuevaVenta;
-        private System.Windows.Forms.ToolStripButton nuevaRevision;
+        private System.Windows.Forms.ToolStripButton nuevo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton ventas;
         private System.Windows.Forms.ToolStripButton revisiones;
@@ -256,6 +243,7 @@
         private System.Windows.Forms.ToolStripButton coches;
         private System.Windows.Forms.ToolStripMenuItem reiniciarBaseDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

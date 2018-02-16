@@ -113,18 +113,41 @@ namespace ConcesionarioCsharp
             switch (arg1)
             {
                 case "coches":
-                    this.nuevoCoche.Enabled = false;
+                    
                     break;
                 case "revisiones":
-                    this.nuevaRevision.Enabled = false;
+                    
                     break;
                 case "ventas":
-                    this.nuevaVenta.Enabled = false;
+                    
                     break;
                 default:
-                    this.nuevoCoche.Enabled = true;
-                    this.nuevaRevision.Enabled = true;
-                    this.nuevaVenta.Enabled = true;
+                    
+                    break;
+            }
+        }
+
+        private void nuevo_Click(object sender, EventArgs e)
+        {
+            string tabla = this.ActiveMdiChild.Name;
+
+            switch (tabla)
+            {
+                case "TablaCoches":
+                    TablaCoches tablaCoches = (TablaCoches)this.ActiveMdiChild;
+                    tablaCoches.nuevaFila();
+                    break;
+                case "TablaRevisiones":
+                    TablaRevisiones tablaRevisiones = (TablaRevisiones)this.ActiveMdiChild;
+                    tablaRevisiones.nuevaFila();
+                    break;
+                case "TablaVentas":
+                    TablaVentas tablaVentas = (TablaVentas)this.ActiveMdiChild;
+                    tablaVentas.nuevaFila();
+                    break;
+                default:
+                    TablaClientes tablaClientes = (TablaClientes)this.ActiveMdiChild;
+                    tablaClientes.nuevaFila();
                     break;
             }
         }
