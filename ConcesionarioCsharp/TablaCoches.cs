@@ -123,7 +123,7 @@ namespace ConcesionarioCsharp
             DataRow fila = dtRecord.NewRow();
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
-            dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0];
+            dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
         }
 
         public void guardar()

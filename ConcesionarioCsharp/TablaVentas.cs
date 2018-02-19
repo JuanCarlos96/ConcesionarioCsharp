@@ -61,8 +61,7 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns["N_Bastidor"].DefaultCellStyle.BackColor = Color.Gray;
             dataGridView1.Columns["Dni"].DefaultCellStyle.BackColor = Color.Gray;
 
-            //Personalización de Columnas
-            //Como las columnas solamente se conocen en tiempo de ejecución, le tengo que dar aquí los anchos
+            //Anchos de Columnas
             dataGridView1.Columns[0].Width = 140;
             dataGridView1.Columns[0].HeaderText = "Bastidor";
             dataGridView1.Columns[1].Width = 103;
@@ -101,6 +100,39 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns.RemoveAt(1);
             dataGridView1.Columns.Insert(1, comboDni);
             dataGridView1.Columns[1].Width = 103;
+
+            //COMANDO INSERT
+            SQLiteCommand comando_ins = new SQLiteCommand("INSERT INTO Venta VALUES (@bastidor,@dni,@fecha,@precio)", conector.DameConexion());
+            comando_ins.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@dni", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@fecha", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@precio", DbType.Decimal));
+            comando_ins.Parameters[0].SourceColumn = "N_Bastidor";
+            comando_ins.Parameters[1].SourceColumn = "Dni";
+            comando_ins.Parameters[2].SourceColumn = "Fecha";
+            comando_ins.Parameters[3].SourceColumn = "Precio";
+            DataAdap.InsertCommand = comando_ins;
+            DataAdap.InsertCommand.Connection = conector.DameConexion();
+
+            //COMANDO UPDATE
+            SQLiteCommand comando_act = new SQLiteCommand("UPDATE Venta SET Fecha=@fecha, Precio=@precio WHERE N_Bastidor=@bastidor AND Dni=@dni", conector.DameConexion());
+            foreach (SQLiteParameter i in comando_ins.Parameters)
+                comando_act.Parameters.Add(i);
+
+            for (int i = 0; i < 4; i++)
+                comando_act.Parameters[i].SourceColumn = comando_ins.Parameters[i].SourceColumn;
+
+            DataAdap.UpdateCommand = comando_act;
+            DataAdap.UpdateCommand.Connection = conector.DameConexion();
+
+            //COMANDO DELETE
+            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Venta WHERE N_Bastidor=@bastidor AND Dni=@dni", conector.DameConexion());
+            comando_del.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
+            comando_del.Parameters.Add(new SQLiteParameter("@dni", DbType.String));
+            comando_del.Parameters[0].SourceColumn = "N_Bastidor";
+            comando_del.Parameters[1].SourceColumn = "Dni";
+            DataAdap.DeleteCommand = comando_del;
+            DataAdap.DeleteCommand.Connection = conector.DameConexion();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -115,21 +147,21 @@ namespace ConcesionarioCsharp
 
             if (index==0)
             {
-                TextBox autoText = e.Control as TextBox;//Se genera un textbox desplegable
+                TextBox autoText = e.Control as TextBox;
                 if (autoText != null)
                 {
                     autoText.AutoCompleteMode = AutoCompleteMode.Suggest;
                     autoText.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    autoText.AutoCompleteCustomSource = this.autoComplete;//Se asigna la colección al TexBox Desplegable
+                    autoText.AutoCompleteCustomSource = this.autoComplete;
                 }
             }else if (index==1)
             {
-                TextBox autoText = e.Control as TextBox;//Se genera un textbox desplegable
+                TextBox autoText = e.Control as TextBox;
                 if (autoText != null)
                 {
                     autoText.AutoCompleteMode = AutoCompleteMode.Suggest;
                     autoText.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                    autoText.AutoCompleteCustomSource = this.autoComplete2;//Se asigna la colección al TexBox Desplegable
+                    autoText.AutoCompleteCustomSource = this.autoComplete2;
                 }
             }
         }
@@ -140,6 +172,53 @@ namespace ConcesionarioCsharp
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+        }
+
+        public void guardar()
+        {
+            bool correcto = true;
+
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                string bastidor = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string dni = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string fecha = dataGridView1.Rows[i].Cells[3].Value.ToString();
+
+                if (bastidor == "")
+                {
+                    MessageBox.Show("Bastidor vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
+                    correcto = false;
+                    break;
+                }
+                else if (dni == "")
+                {
+                    MessageBox.Show("DNI vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[1];
+                    correcto = false;
+                    break;
+                }
+                else if (fecha == "")
+                {
+                    MessageBox.Show("Fecha vacía en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
+                    correcto = false;
+                    break;
+                }
+            }
+
+            if (correcto)
+            {
+                dataGridView1.EndEdit();
+                DataAdap.Update(dtRecord);
+                MessageBox.Show("Datos guardados");
+
+                SQLiteCommand consulta = conector.DameComando();
+                consulta.CommandText = "SELECT * FROM Venta";
+                dtRecord = new DataTable();
+                DataAdap.Fill(dtRecord);
+                dataGridView1.DataSource = dtRecord;
+            }
         }
     }
 }

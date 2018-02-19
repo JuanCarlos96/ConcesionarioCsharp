@@ -175,8 +175,63 @@ namespace ConcesionarioCsharp
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1];
+            SQLiteCommand nrevision = conector.DameComando();
+            nrevision.CommandText = "SELECT MAX(N_Revision) FROM Revision";
+            SQLiteDataReader reader = nrevision.ExecuteReader();
+            while (reader.Read())
+            {
+                dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = reader.GetInt16(0)+1;
+            }
+            reader.Close();
         }
 
+        public void guardar()
+        {
+            bool correcto = true;
 
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                string fecha = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string frenos = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string aceite = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string filtro = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                string bastidor = dataGridView1.Rows[i].Cells[5].Value.ToString();
+
+                if (fecha == "")
+                {
+                    MessageBox.Show("Fecha vacía en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[1];
+                    correcto = false;
+                    break;
+                }
+                else if (frenos == "" && aceite == "" && filtro == "")
+                {
+                    MessageBox.Show("Debe seleccionar al menos una opción");
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
+                    correcto = false;
+                    break;
+                }
+                else if (bastidor == "")
+                {
+                    MessageBox.Show("Bastidor vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[5];
+                    correcto = false;
+                    break;
+                }
+            }
+
+            if (correcto)
+            {
+                dataGridView1.EndEdit();
+                DataAdap.Update(dtRecord);
+                MessageBox.Show("Datos guardados");
+
+                SQLiteCommand consulta = conector.DameComando();
+                consulta.CommandText = "SELECT * FROM Revision";
+                dtRecord = new DataTable();
+                DataAdap.Fill(dtRecord);
+                dataGridView1.DataSource = dtRecord;
+            }
+        }
     }
 }

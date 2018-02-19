@@ -166,11 +166,15 @@ namespace ConcesionarioCsharp
                     break;
                 case "TablaRevisiones":
                     TablaRevisiones tablaRevisiones = (TablaRevisiones)this.ActiveMdiChild;
-                    
+                    tablaRevisiones.Validate();
+                    tablaRevisiones.guardar();
+                    tablaRevisiones.Refresh();
                     break;
                 case "TablaVentas":
                     TablaVentas tablaVentas = (TablaVentas)this.ActiveMdiChild;
-                    
+                    tablaVentas.Validate();
+                    tablaVentas.guardar();
+                    tablaVentas.Refresh();
                     break;
                 default:
                     TablaClientes tablaClientes = (TablaClientes)this.ActiveMdiChild;
