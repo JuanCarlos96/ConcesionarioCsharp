@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reiniciarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.nuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.coches = new System.Windows.Forms.ToolStripButton();
             this.revisiones = new System.Windows.Forms.ToolStripButton();
             this.ventas = new System.Windows.Forms.ToolStripButton();
             this.clientes = new System.Windows.Forms.ToolStripButton();
-            this.reiniciarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,22 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(60, 20);
             this.toolStripMenuItem1.Text = "&Archivo";
             // 
+            // reiniciarBaseDeDatosToolStripMenuItem
+            // 
+            this.reiniciarBaseDeDatosToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.refresh_icon2;
+            this.reiniciarBaseDeDatosToolStripMenuItem.Name = "reiniciarBaseDeDatosToolStripMenuItem";
+            this.reiniciarBaseDeDatosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
+            this.reiniciarBaseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.reiniciarBaseDeDatosToolStripMenuItem.Text = "&Reiniciar Base de Datos";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.exit_icon;
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.salirToolStripMenuItem.Text = "&Salir";
+            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -84,6 +100,22 @@
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ay&uda";
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            this.acercaDeToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.about_icon;
+            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            this.acercaDeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.acercaDeToolStripMenuItem.Text = "&Acerca de";
+            // 
+            // manualToolStripMenuItem
+            // 
+            this.manualToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.pdf_icon;
+            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
+            this.manualToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.manualToolStripMenuItem.Text = "&Manual";
             // 
             // toolStrip1
             // 
@@ -100,11 +132,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(829, 54);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // nuevo
             // 
@@ -127,6 +154,12 @@
             this.toolStripButton1.Size = new System.Drawing.Size(53, 51);
             this.toolStripButton1.Text = "Guardar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
             // 
             // coches
             // 
@@ -171,38 +204,6 @@
             this.clientes.Text = "Clientes";
             this.clientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.clientes.Click += new System.EventHandler(this.clientes_Click);
-            // 
-            // reiniciarBaseDeDatosToolStripMenuItem
-            // 
-            this.reiniciarBaseDeDatosToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.refresh_icon2;
-            this.reiniciarBaseDeDatosToolStripMenuItem.Name = "reiniciarBaseDeDatosToolStripMenuItem";
-            this.reiniciarBaseDeDatosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
-            this.reiniciarBaseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.reiniciarBaseDeDatosToolStripMenuItem.Text = "&Reiniciar Base de Datos";
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.exit_icon;
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
-            this.salirToolStripMenuItem.Text = "&Salir";
-            // 
-            // acercaDeToolStripMenuItem
-            // 
-            this.acercaDeToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.about_icon;
-            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.acercaDeToolStripMenuItem.Text = "&Acerca de";
-            // 
-            // manualToolStripMenuItem
-            // 
-            this.manualToolStripMenuItem.Image = global::ConcesionarioCsharp.Properties.Resources.pdf_icon;
-            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.manualToolStripMenuItem.Text = "&Manual";
             // 
             // FormMain
             // 

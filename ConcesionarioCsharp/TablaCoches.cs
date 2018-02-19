@@ -62,9 +62,16 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns.RemoveAt(5);
             dataGridView1.Columns.Insert(5, comboTipo);
 
+            //Botón auxiliar para seleccionar imagen
+            DataGridViewButtonColumn botonImg = new DataGridViewButtonColumn();
+            botonImg.Name = "Imagen";
+            botonImg.Text = "Seleccionar Imagen";
+            botonImg.HeaderText = "";
+            botonImg.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(botonImg);
+
             //COMANDO INSERT
             SQLiteCommand comando_ins = new SQLiteCommand("INSERT INTO Coche VALUES (@bastidor,@marca,@modelo,@motor,@cv,@tipo,@color,@precio,@imagen)", conector.DameConexion());
-            //Se establece la anti-inyeccion SQL enlazando los parámetros 
             comando_ins.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
             comando_ins.Parameters.Add(new SQLiteParameter("@marca", DbType.String));
             comando_ins.Parameters.Add(new SQLiteParameter("@modelo", DbType.String));
@@ -74,7 +81,6 @@ namespace ConcesionarioCsharp
             comando_ins.Parameters.Add(new SQLiteParameter("@color", DbType.String));
             comando_ins.Parameters.Add(new SQLiteParameter("@precio", DbType.Decimal));
             comando_ins.Parameters.Add(new SQLiteParameter("@imagen", DbType.Binary));
-            //Añado los nombres de los campos de la base de datos. Los números de columnas se corresponde con el orden de los parámetros anteriores
             comando_ins.Parameters[0].SourceColumn = "N_Bastidor";
             comando_ins.Parameters[1].SourceColumn = "Marca";
             comando_ins.Parameters[2].SourceColumn = "Modelo";
@@ -84,13 +90,11 @@ namespace ConcesionarioCsharp
             comando_ins.Parameters[6].SourceColumn = "Color";
             comando_ins.Parameters[7].SourceColumn = "Precio";
             comando_ins.Parameters[8].SourceColumn = "Img";
-            //Se actualiza el comando Insert y se le asocia la conexión
             DataAdap.InsertCommand = comando_ins;
             DataAdap.InsertCommand.Connection = conector.DameConexion();
 
             //COMANDO UPDATE
-            SQLiteCommand comando_act = new SQLiteCommand("UPDATE Coche SET Marca=@marca, Modelo=@modelo, Motor=@motor, CV=@cv, Tipo=@tipo, Color=@color, Precio=@precio, Img=@imagen WHERE N_Bastidor=@bastidor", conector.DameConexion());
-            //Dado que son los mismos parámmetros que para el comando insert puedo hacer lo siguiente: copiar parámetros y sourcecolumns 
+            SQLiteCommand comando_act = new SQLiteCommand("UPDATE Coche SET Marca=@marca, Modelo=@modelo, Motor=@motor, CV=@cv, Tipo=@tipo, Color=@color, Precio=@precio, Img=@imagen WHERE N_Bastidor=@bastidor", conector.DameConexion()); 
             foreach (SQLiteParameter i in comando_ins.Parameters)
                 comando_act.Parameters.Add(i);
 
@@ -99,6 +103,13 @@ namespace ConcesionarioCsharp
 
             DataAdap.UpdateCommand = comando_act;
             DataAdap.UpdateCommand.Connection = conector.DameConexion();
+
+            //COMANDO DELETE
+            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Coche WHERE N_Bastidor = @bastidor", conector.DameConexion());
+            comando_del.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
+            comando_del.Parameters[0].SourceColumn = "N_Bastidor";
+            DataAdap.DeleteCommand = comando_del;
+            DataAdap.DeleteCommand.Connection = conector.DameConexion();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -112,7 +123,75 @@ namespace ConcesionarioCsharp
             DataRow fila = dtRecord.NewRow();
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
-            dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+            dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0];
+        }
+
+        public void guardar()
+        {
+            bool correcto = true;
+
+            for(int i=0; i<dataGridView1.RowCount; i++)
+            {
+                string bastidor = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                string marca = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string modelo = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string motor = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string tipo = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                string color = dataGridView1.Rows[i].Cells[6].Value.ToString();
+
+                if(bastidor == "")
+                {
+                    MessageBox.Show("Bastidor vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
+                    correcto = false;
+                    break;
+                }else if(marca == "")
+                {
+                    MessageBox.Show("Marca vacía en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[1];
+                    correcto = false;
+                    break;
+                }else if(modelo == "")
+                {
+                    MessageBox.Show("Modelo vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
+                    correcto = false;
+                    break;
+                }else if(motor == "")
+                {
+                    MessageBox.Show("Motor vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[3];
+                    correcto = false;
+                    break;
+                }
+                else if (tipo == "")
+                {
+                    MessageBox.Show("Tipo vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[5];
+                    correcto = false;
+                    break;
+                }
+                else if(color == "")
+                {
+                    MessageBox.Show("Color vacío en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[6];
+                    correcto = false;
+                    break;
+                }
+            }
+
+            if (correcto)
+            {
+                dataGridView1.EndEdit();
+                DataAdap.Update(dtRecord);
+                MessageBox.Show("Datos guardados");
+
+                SQLiteCommand consulta = conector.DameComando();
+                consulta.CommandText = "SELECT * FROM Coche";
+                dtRecord = new DataTable();
+                DataAdap.Fill(dtRecord);
+                dataGridView1.DataSource = dtRecord;
+            }
         }
     }
 }

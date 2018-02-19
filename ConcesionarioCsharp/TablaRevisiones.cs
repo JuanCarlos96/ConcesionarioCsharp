@@ -110,6 +110,41 @@ namespace ConcesionarioCsharp
             dataGridView1.Columns.RemoveAt(5);
             dataGridView1.Columns.Insert(5, comboBastidor);
             dataGridView1.Columns[5].Width = 170;
+
+            //COMANDO INSERT
+            SQLiteCommand comando_ins = new SQLiteCommand("INSERT INTO Revision VALUES (@revision,@fecha,@frenos,@aceite,@filtro,@bastidor)", conector.DameConexion());
+            comando_ins.Parameters.Add(new SQLiteParameter("@revision", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@fecha", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@frenos", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@aceite", DbType.String));
+            comando_ins.Parameters.Add(new SQLiteParameter("@filtro", DbType.Int16));
+            comando_ins.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
+            comando_ins.Parameters[0].SourceColumn = "N_Revision";
+            comando_ins.Parameters[1].SourceColumn = "Fecha";
+            comando_ins.Parameters[2].SourceColumn = "Frenos";
+            comando_ins.Parameters[3].SourceColumn = "Aceite";
+            comando_ins.Parameters[4].SourceColumn = "Filtro";
+            comando_ins.Parameters[5].SourceColumn = "N_Bastidor";
+            DataAdap.InsertCommand = comando_ins;
+            DataAdap.InsertCommand.Connection = conector.DameConexion();
+
+            //COMANDO UPDATE
+            SQLiteCommand comando_act = new SQLiteCommand("UPDATE Revision SET Fecha=@fecha, Frenos=@frenos, Aceite=@aceite, Filtro=@filtro, N_Bastidor=@bastidor WHERE N_Revision=@revision", conector.DameConexion());
+            foreach (SQLiteParameter i in comando_ins.Parameters)
+                comando_act.Parameters.Add(i);
+
+            for (int i = 0; i < 6; i++)
+                comando_act.Parameters[i].SourceColumn = comando_ins.Parameters[i].SourceColumn;
+
+            DataAdap.UpdateCommand = comando_act;
+            DataAdap.UpdateCommand.Connection = conector.DameConexion();
+
+            //COMANDO DELETE
+            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Revision WHERE N_Revision=@revision", conector.DameConexion());
+            comando_del.Parameters.Add(new SQLiteParameter("@revision", DbType.String));
+            comando_del.Parameters[0].SourceColumn = "N_Revision";
+            DataAdap.DeleteCommand = comando_del;
+            DataAdap.DeleteCommand.Connection = conector.DameConexion();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -141,5 +176,7 @@ namespace ConcesionarioCsharp
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1];
         }
+
+
     }
 }

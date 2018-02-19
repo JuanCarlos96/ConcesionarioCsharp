@@ -151,5 +151,34 @@ namespace ConcesionarioCsharp
                     break;
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            string tabla = this.ActiveMdiChild.Name;
+
+            switch (tabla)
+            {
+                case "TablaCoches":
+                    TablaCoches tablaCoches = (TablaCoches)this.ActiveMdiChild;
+                    tablaCoches.Validate();
+                    tablaCoches.guardar();
+                    tablaCoches.Refresh();
+                    break;
+                case "TablaRevisiones":
+                    TablaRevisiones tablaRevisiones = (TablaRevisiones)this.ActiveMdiChild;
+                    
+                    break;
+                case "TablaVentas":
+                    TablaVentas tablaVentas = (TablaVentas)this.ActiveMdiChild;
+                    
+                    break;
+                default:
+                    TablaClientes tablaClientes = (TablaClientes)this.ActiveMdiChild;
+                    tablaClientes.Validate();
+                    tablaClientes.guardar();
+                    tablaClientes.Refresh();
+                    break;
+            }
+        }
     }
 }
