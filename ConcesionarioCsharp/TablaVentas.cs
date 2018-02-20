@@ -180,9 +180,10 @@ namespace ConcesionarioCsharp
 
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
-                string bastidor = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                string dni = dataGridView1.Rows[i].Cells[2].Value.ToString();
-                string fecha = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string bastidor = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                string dni = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string fecha = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string precio = dataGridView1.Rows[i].Cells[3].Value.ToString();
 
                 if (bastidor == "")
                 {
@@ -204,6 +205,12 @@ namespace ConcesionarioCsharp
                     dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
                     correcto = false;
                     break;
+                }else if (precio == "")
+                {
+                    MessageBox.Show("Precio incorrecto en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[3];
+                    correcto = false;
+                    break;
                 }
             }
 
@@ -218,6 +225,26 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
+            }
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            Opener.pasadatos("ventas");
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Opener.pasadatos("ventas2");
+        }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 3:
+                    MessageBox.Show("Error en el precio, debe ser un número real");
+                    break;
             }
         }
     }

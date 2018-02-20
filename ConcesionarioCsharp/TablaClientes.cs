@@ -156,5 +156,15 @@ namespace ConcesionarioCsharp
                 dataGridView1.DataSource = dtRecord;
             }
         }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            Opener.pasadatos("clientes");
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Opener.pasadatos("clientes2");
+        }
     }
 }

@@ -232,5 +232,36 @@ namespace ConcesionarioCsharp
                     break;
             }
         }
+
+        private static Bitmap ResizeImage(Bitmap image, int width, int height)
+        {
+            Bitmap resizedImage = new Bitmap(width, height);
+            using (Graphics gfx = Graphics.FromImage(resizedImage))
+            {
+                gfx.DrawImage(image, new Rectangle(0, 0, width, height),
+                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+            }
+            return resizedImage;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Imagen")
+            {
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = "PNG Files(*.png)|*.png|JPG Files(*.jpg)|*.jpg|All Files(*.*)|*.*";
+                dlg.Title = "Seleccionar Imagen";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap Imagen_orig = (Bitmap)Image.FromFile(dlg.FileName, true);
+                    Bitmap imagen_reesc = ResizeImage(Imagen_orig, 180, 150);
+                    ImageConverter converter = new ImageConverter();
+                    byte[] bytes = (byte[])converter.ConvertTo(imagen_reesc, typeof(byte[]));
+
+                    dataGridView1.Rows[e.RowIndex].Cells[9].Value = bytes;
+                    Opener.pasadatos("coches");
+                }
+            }
+        }
     }
 }
