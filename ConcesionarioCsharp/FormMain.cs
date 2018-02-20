@@ -113,16 +113,68 @@ namespace ConcesionarioCsharp
             switch (arg1)
             {
                 case "coches":
-                    
+                    nuevo.Enabled = false;
+                    toolStripButton1.Enabled = true;
+                    coches.Enabled = false;
+                    revisiones.Enabled = false;
+                    ventas.Enabled = false;
+                    clientes.Enabled = false;
+                    break;
+                case "coches2":
+                    nuevo.Enabled = true;
+                    toolStripButton1.Enabled = false;
+                    coches.Enabled = true;
+                    revisiones.Enabled = true;
+                    ventas.Enabled = true;
+                    clientes.Enabled = true;
                     break;
                 case "revisiones":
-                    
+                    nuevo.Enabled = false;
+                    toolStripButton1.Enabled = true;
+                    coches.Enabled = false;
+                    revisiones.Enabled = false;
+                    ventas.Enabled = false;
+                    clientes.Enabled = false;
+                    break;
+                case "revisiones2":
+                    nuevo.Enabled = true;
+                    toolStripButton1.Enabled = false;
+                    coches.Enabled = true;
+                    revisiones.Enabled = true;
+                    ventas.Enabled = true;
+                    clientes.Enabled = true;
                     break;
                 case "ventas":
-                    
+                    nuevo.Enabled = false;
+                    toolStripButton1.Enabled = true;
+                    coches.Enabled = false;
+                    revisiones.Enabled = false;
+                    ventas.Enabled = false;
+                    clientes.Enabled = false;
+                    break;
+                case "ventas2":
+                    nuevo.Enabled = true;
+                    toolStripButton1.Enabled = false;
+                    coches.Enabled = true;
+                    revisiones.Enabled = true;
+                    ventas.Enabled = true;
+                    clientes.Enabled = true;
+                    break;
+                case "clientes":
+                    nuevo.Enabled = false;
+                    toolStripButton1.Enabled = true;
+                    coches.Enabled = false;
+                    revisiones.Enabled = false;
+                    ventas.Enabled = false;
+                    clientes.Enabled = false;
                     break;
                 default:
-                    
+                    nuevo.Enabled = true;
+                    toolStripButton1.Enabled = false;
+                    coches.Enabled = true;
+                    revisiones.Enabled = true;
+                    ventas.Enabled = true;
+                    clientes.Enabled = true;
                     break;
             }
         }

@@ -147,6 +147,7 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.Enabled = false;
             this.toolStripButton1.Image = global::ConcesionarioCsharp.Properties.Resources.save_icon;
             this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;

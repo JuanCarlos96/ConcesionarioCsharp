@@ -123,7 +123,7 @@ namespace ConcesionarioCsharp
             DataRow fila = dtRecord.NewRow();
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
-            dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+            dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1];
         }
 
         public void guardar()
@@ -132,49 +132,65 @@ namespace ConcesionarioCsharp
 
             for(int i=0; i<dataGridView1.RowCount; i++)
             {
-                string bastidor = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                string marca = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                string modelo = dataGridView1.Rows[i].Cells[2].Value.ToString();
-                string motor = dataGridView1.Rows[i].Cells[3].Value.ToString();
-                string tipo = dataGridView1.Rows[i].Cells[5].Value.ToString();
-                string color = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                string bastidor = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string marca = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string modelo = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string motor = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                string cv = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                string tipo = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                string color = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                string precio = dataGridView1.Rows[i].Cells[8].Value.ToString();
 
                 if(bastidor == "")
                 {
                     MessageBox.Show("Bastidor vacío en fila " + (i + 1));
-                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[1];
                     correcto = false;
                     break;
                 }else if(marca == "")
                 {
                     MessageBox.Show("Marca vacía en fila " + (i + 1));
-                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[1];
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
                     correcto = false;
                     break;
                 }else if(modelo == "")
                 {
                     MessageBox.Show("Modelo vacío en fila " + (i + 1));
-                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[3];
                     correcto = false;
                     break;
                 }else if(motor == "")
                 {
                     MessageBox.Show("Motor vacío en fila " + (i + 1));
-                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[3];
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[4];
+                    correcto = false;
+                    break;
+                }
+                else if (cv == "")
+                {
+                    MessageBox.Show("CV incorrectos en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[5];
                     correcto = false;
                     break;
                 }
                 else if (tipo == "")
                 {
                     MessageBox.Show("Tipo vacío en fila " + (i + 1));
-                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[5];
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[6];
                     correcto = false;
                     break;
                 }
                 else if(color == "")
                 {
                     MessageBox.Show("Color vacío en fila " + (i + 1));
-                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[6];
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[7];
+                    correcto = false;
+                    break;
+                }
+                else if (precio == "")
+                {
+                    MessageBox.Show("Precio incorrecto en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[8];
                     correcto = false;
                     break;
                 }
@@ -191,6 +207,29 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
+            }
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            Opener.pasadatos("coches");
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Opener.pasadatos("coches2");
+        }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 4:
+                    MessageBox.Show("Error en los caballos, deben ser un entero");
+                    break;
+                case 7:
+                    MessageBox.Show("Error en el precio, debe ser un número real");
+                    break;
             }
         }
     }
