@@ -15,7 +15,6 @@ namespace ConcesionarioCsharp
         private SQLiteDataAdapter DataAdap;
         private SQLiteDataAdapter DataAdap2;
         private AutoCompleteStringCollection autoComplete = new AutoCompleteStringCollection();
-        bool guardado = true;
 
         public TablaRevisiones(ConectorSQLite con)
         {
@@ -184,7 +183,6 @@ namespace ConcesionarioCsharp
                 dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = reader.GetInt16(0)+1;
             }
             reader.Close();
-            guardado = false;
         }
 
         public void guardar()
@@ -233,15 +231,17 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
-                Opener.pasadatos("revisiones2");
-                guardado = true;
             }
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             Opener.pasadatos("revisiones");
-            guardado = false;
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Opener.pasadatos("revisiones2");
         }
     }
 }

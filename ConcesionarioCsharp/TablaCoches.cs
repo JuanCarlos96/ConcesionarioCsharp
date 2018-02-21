@@ -8,11 +8,10 @@ namespace ConcesionarioCsharp
 {
     public partial class TablaCoches : Form
     {
-        private InfoCoche editarCoche;
+        private InfoCoche editarCoche = new InfoCoche();
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private SQLiteDataAdapter DataAdap;
-        bool guardado = true;
 
         public TablaCoches(ConectorSQLite con)
         {
@@ -125,7 +124,6 @@ namespace ConcesionarioCsharp
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1];
-            guardado = false;
         }
 
         public void guardar()
@@ -209,15 +207,17 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
-                Opener.pasadatos("coches2");
-                guardado = true;
             }
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             Opener.pasadatos("coches");
-            guardado = false;
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Opener.pasadatos("coches2");
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -246,97 +246,22 @@ namespace ConcesionarioCsharp
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 & e.ColumnIndex > -1)
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Imagen")
             {
-                if (dataGridView1.Columns[e.ColumnIndex].Name == "Imagen")
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = "PNG Files(*.png)|*.png|JPG Files(*.jpg)|*.jpg|All Files(*.*)|*.*";
+                dlg.Title = "Seleccionar Imagen";
+                if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    OpenFileDialog dlg = new OpenFileDialog();
-                    dlg.Filter = "PNG Files(*.png)|*.png|JPG Files(*.jpg)|*.jpg|All Files(*.*)|*.*";
-                    dlg.Title = "Seleccionar Imagen";
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        Bitmap Imagen_orig = (Bitmap)Image.FromFile(dlg.FileName, true);
-                        Bitmap imagen_reesc = ResizeImage(Imagen_orig, 180, 150);
-                        ImageConverter converter = new ImageConverter();
-                        byte[] bytes = (byte[])converter.ConvertTo(imagen_reesc, typeof(byte[]));
+                    Bitmap Imagen_orig = (Bitmap)Image.FromFile(dlg.FileName, true);
+                    Bitmap imagen_reesc = ResizeImage(Imagen_orig, 180, 150);
+                    ImageConverter converter = new ImageConverter();
+                    byte[] bytes = (byte[])converter.ConvertTo(imagen_reesc, typeof(byte[]));
 
-                        dataGridView1.Rows[e.RowIndex].Cells[9].Value = bytes;
-                        Opener.pasadatos("coches");
-                        guardado = false;
-                    }
+                    dataGridView1.Rows[e.RowIndex].Cells[9].Value = bytes;
+                    Opener.pasadatos("coches");
                 }
             }
-        }
-
-        private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            this.guardar();
-        }
-
-        //Funciones de teclado
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (dataGridView1.SelectedRows.Count == 1)
-                switch (keyData)
-                {
-                    case (Keys.B):
-                        if ((MessageBox.Show("¿Desea borrar el coche seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
-                        {
-                            dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                            this.guardar();
-                        }
-                        break;
-                    case (Keys.I):
-                        InfoCoche infoCoche = new InfoCoche(this.conector, dataGridView1.SelectedRows[0].Cells[1].Value);
-                        infoCoche.ShowDialog();
-                        break;
-                }
-
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        public void menucontextual(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-            switch (e.ClickedItem.Name.ToString())
-            {
-                case "Información":
-                    InfoCoche infoCoche = new InfoCoche(this.conector, dataGridView1.SelectedRows[0].Cells[1].Value);
-                    infoCoche.ShowDialog();
-                    break;
-                case "Borrar":
-                    if ((MessageBox.Show("¿Desea borrar el coche seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
-                    {
-                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                        this.guardar();
-                    }
-                    break;
-            }
-            dataGridView1.ClearSelection();
-        }
-
-        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right & guardado)
-            {
-                dataGridView1.ClearSelection();
-                int currentMouseOverRow = dataGridView1.HitTest(e.X, e.Y).RowIndex;
-
-                if (currentMouseOverRow >= 0)//Solo si está sobre las filas
-                {
-                    ContextMenuStrip m = new ContextMenuStrip();
-                    m.Items.Add("Ver Ficha").Name = "Información";
-                    //m.Items[0].Image = Properties.Resources.editar;
-                    m.Items.Add("Borrar").Name = "Borrar";
-                    //m.Items[1].Image = Properties.Resources.borra;
-                    dataGridView1.Rows[currentMouseOverRow].Selected = true;
-                    m.ItemClicked += new ToolStripItemClickedEventHandler(menucontextual);
-                    m.Show(dataGridView1, new Point(e.X, e.Y));
-                }
-
-            }
-            else if (e.Button == MouseButtons.Right & !guardado)
-                MessageBox.Show("El menú contextual se activa cuando todo está guardado");
         }
     }
 }
