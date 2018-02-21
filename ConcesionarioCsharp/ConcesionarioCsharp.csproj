@@ -61,29 +61,29 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarVenta.cs">
+    <Compile Include="InfoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarVenta.Designer.cs">
-      <DependentUpon>EditarVenta.cs</DependentUpon>
+    <Compile Include="InfoVenta.Designer.cs">
+      <DependentUpon>InfoVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarCoche.cs">
+    <Compile Include="InfoCoche.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarCoche.Designer.cs">
-      <DependentUpon>EditarCoche.cs</DependentUpon>
+    <Compile Include="InfoCoche.Designer.cs">
+      <DependentUpon>InfoCoche.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarRevision.cs">
+    <Compile Include="InfoRevision.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarRevision.Designer.cs">
-      <DependentUpon>EditarRevision.cs</DependentUpon>
+    <Compile Include="InfoRevision.Designer.cs">
+      <DependentUpon>InfoRevision.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarCliente.cs">
+    <Compile Include="InfoCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarCliente.Designer.cs">
-      <DependentUpon>EditarCliente.cs</DependentUpon>
+    <Compile Include="InfoCliente.Designer.cs">
+      <DependentUpon>InfoCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaz.cs" />
     <Compile Include="Program.cs" />
@@ -115,17 +115,17 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarVenta.resx">
-      <DependentUpon>EditarVenta.cs</DependentUpon>
+    <EmbeddedResource Include="InfoVenta.resx">
+      <DependentUpon>InfoVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarCoche.resx">
-      <DependentUpon>EditarCoche.cs</DependentUpon>
+    <EmbeddedResource Include="InfoCoche.resx">
+      <DependentUpon>InfoCoche.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarRevision.resx">
-      <DependentUpon>EditarRevision.cs</DependentUpon>
+    <EmbeddedResource Include="InfoRevision.resx">
+      <DependentUpon>InfoRevision.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarCliente.resx">
-      <DependentUpon>EditarCliente.cs</DependentUpon>
+    <EmbeddedResource Include="InfoCliente.resx">
+      <DependentUpon>InfoCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

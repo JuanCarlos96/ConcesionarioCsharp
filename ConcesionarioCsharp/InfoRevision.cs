@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ConcesionarioCsharp
 {
-    public partial class EditarRevision : Form
+    public partial class InfoRevision : Form
     {
-        public EditarRevision()
+        public InfoRevision()
         {
             InitializeComponent();
         }

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace ConcesionarioCsharp
 {
-    public partial class EditarVenta : Form
+    public partial class InfoCliente : Form
     {
-        public EditarVenta()
+        public InfoCliente()
         {
             InitializeComponent();
         }
 
-        private void btnCancelarVentaModificar_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }

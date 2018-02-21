@@ -8,7 +8,7 @@ namespace ConcesionarioCsharp
 {
     public partial class TablaVentas : Form
     {
-        private EditarVenta editarVenta = new EditarVenta();
+        private InfoVenta editarVenta = new InfoVenta();
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private DataTable dtRecordBastidor;

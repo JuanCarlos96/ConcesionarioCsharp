@@ -8,7 +8,7 @@ namespace ConcesionarioCsharp
 {
     public partial class TablaRevisiones : Form
     {
-        private EditarRevision editarRevision = new EditarRevision();
+        private InfoRevision editarRevision = new InfoRevision();
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private DataTable dtRecord2;

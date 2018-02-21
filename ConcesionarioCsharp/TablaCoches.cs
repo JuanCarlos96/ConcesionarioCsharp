@@ -8,7 +8,7 @@ namespace ConcesionarioCsharp
 {
     public partial class TablaCoches : Form
     {
-        private EditarCoche editarCoche = new EditarCoche();
+        private InfoCoche editarCoche = new InfoCoche();
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private SQLiteDataAdapter DataAdap;
