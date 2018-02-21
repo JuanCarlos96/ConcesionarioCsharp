@@ -37,19 +37,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtBastidorCocheModificar = new System.Windows.Forms.TextBox();
-            this.txtModeloCocheModificar = new System.Windows.Forms.TextBox();
-            this.txtMotorCocheModificar = new System.Windows.Forms.TextBox();
-            this.txtColorCocheModificar = new System.Windows.Forms.TextBox();
-            this.txtMarcaCocheModificar = new System.Windows.Forms.TextBox();
-            this.txtCVCocheModificar = new System.Windows.Forms.TextBox();
-            this.txtPrecioCocheModificar = new System.Windows.Forms.TextBox();
-            this.pImagenCocheModificar = new System.Windows.Forms.PictureBox();
+            this.txtBastidor = new System.Windows.Forms.TextBox();
+            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.txtMotor = new System.Windows.Forms.TextBox();
+            this.txtColor = new System.Windows.Forms.TextBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.txtCV = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.pImagen = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbTipoCocheModificar = new System.Windows.Forms.ComboBox();
-            this.btnCancelarCocheModificar = new System.Windows.Forms.Button();
-            this.btnAceptarCocheModificar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pImagenCocheModificar)).BeginInit();
+            this.txtTipo = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -124,62 +122,69 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "Precio";
             // 
-            // txtBastidorCocheModificar
+            // txtBastidor
             // 
-            this.txtBastidorCocheModificar.Location = new System.Drawing.Point(15, 36);
-            this.txtBastidorCocheModificar.Name = "txtBastidorCocheModificar";
-            this.txtBastidorCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtBastidorCocheModificar.TabIndex = 8;
+            this.txtBastidor.Enabled = false;
+            this.txtBastidor.Location = new System.Drawing.Point(15, 36);
+            this.txtBastidor.Name = "txtBastidor";
+            this.txtBastidor.Size = new System.Drawing.Size(100, 20);
+            this.txtBastidor.TabIndex = 8;
             // 
-            // txtModeloCocheModificar
+            // txtModelo
             // 
-            this.txtModeloCocheModificar.Location = new System.Drawing.Point(15, 92);
-            this.txtModeloCocheModificar.Name = "txtModeloCocheModificar";
-            this.txtModeloCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtModeloCocheModificar.TabIndex = 9;
+            this.txtModelo.Enabled = false;
+            this.txtModelo.Location = new System.Drawing.Point(15, 92);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(100, 20);
+            this.txtModelo.TabIndex = 9;
             // 
-            // txtMotorCocheModificar
+            // txtMotor
             // 
-            this.txtMotorCocheModificar.Location = new System.Drawing.Point(15, 151);
-            this.txtMotorCocheModificar.Name = "txtMotorCocheModificar";
-            this.txtMotorCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtMotorCocheModificar.TabIndex = 10;
+            this.txtMotor.Enabled = false;
+            this.txtMotor.Location = new System.Drawing.Point(15, 151);
+            this.txtMotor.Name = "txtMotor";
+            this.txtMotor.Size = new System.Drawing.Size(100, 20);
+            this.txtMotor.TabIndex = 10;
             // 
-            // txtColorCocheModificar
+            // txtColor
             // 
-            this.txtColorCocheModificar.Location = new System.Drawing.Point(15, 215);
-            this.txtColorCocheModificar.Name = "txtColorCocheModificar";
-            this.txtColorCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtColorCocheModificar.TabIndex = 11;
+            this.txtColor.Enabled = false;
+            this.txtColor.Location = new System.Drawing.Point(15, 215);
+            this.txtColor.Name = "txtColor";
+            this.txtColor.Size = new System.Drawing.Size(100, 20);
+            this.txtColor.TabIndex = 11;
             // 
-            // txtMarcaCocheModificar
+            // txtMarca
             // 
-            this.txtMarcaCocheModificar.Location = new System.Drawing.Point(162, 36);
-            this.txtMarcaCocheModificar.Name = "txtMarcaCocheModificar";
-            this.txtMarcaCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtMarcaCocheModificar.TabIndex = 12;
+            this.txtMarca.Enabled = false;
+            this.txtMarca.Location = new System.Drawing.Point(162, 36);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(100, 20);
+            this.txtMarca.TabIndex = 12;
             // 
-            // txtCVCocheModificar
+            // txtCV
             // 
-            this.txtCVCocheModificar.Location = new System.Drawing.Point(162, 151);
-            this.txtCVCocheModificar.Name = "txtCVCocheModificar";
-            this.txtCVCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtCVCocheModificar.TabIndex = 14;
+            this.txtCV.Enabled = false;
+            this.txtCV.Location = new System.Drawing.Point(162, 151);
+            this.txtCV.Name = "txtCV";
+            this.txtCV.Size = new System.Drawing.Size(100, 20);
+            this.txtCV.TabIndex = 14;
             // 
-            // txtPrecioCocheModificar
+            // txtPrecio
             // 
-            this.txtPrecioCocheModificar.Location = new System.Drawing.Point(162, 215);
-            this.txtPrecioCocheModificar.Name = "txtPrecioCocheModificar";
-            this.txtPrecioCocheModificar.Size = new System.Drawing.Size(100, 20);
-            this.txtPrecioCocheModificar.TabIndex = 15;
+            this.txtPrecio.Enabled = false;
+            this.txtPrecio.Location = new System.Drawing.Point(162, 215);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecio.TabIndex = 15;
             // 
-            // pImagenCocheModificar
+            // pImagen
             // 
-            this.pImagenCocheModificar.Location = new System.Drawing.Point(333, 36);
-            this.pImagenCocheModificar.Name = "pImagenCocheModificar";
-            this.pImagenCocheModificar.Size = new System.Drawing.Size(259, 243);
-            this.pImagenCocheModificar.TabIndex = 16;
-            this.pImagenCocheModificar.TabStop = false;
+            this.pImagen.Location = new System.Drawing.Point(333, 36);
+            this.pImagen.Name = "pImagen";
+            this.pImagen.Size = new System.Drawing.Size(259, 243);
+            this.pImagen.TabIndex = 16;
+            this.pImagen.TabStop = false;
             // 
             // label9
             // 
@@ -190,50 +195,29 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Imagen";
             // 
-            // cbTipoCocheModificar
+            // txtTipo
             // 
-            this.cbTipoCocheModificar.FormattingEnabled = true;
-            this.cbTipoCocheModificar.Location = new System.Drawing.Point(162, 92);
-            this.cbTipoCocheModificar.Name = "cbTipoCocheModificar";
-            this.cbTipoCocheModificar.Size = new System.Drawing.Size(100, 21);
-            this.cbTipoCocheModificar.TabIndex = 18;
+            this.txtTipo.Enabled = false;
+            this.txtTipo.Location = new System.Drawing.Point(162, 92);
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Size = new System.Drawing.Size(100, 20);
+            this.txtTipo.TabIndex = 21;
             // 
-            // btnCancelarCocheModificar
-            // 
-            this.btnCancelarCocheModificar.Location = new System.Drawing.Point(517, 302);
-            this.btnCancelarCocheModificar.Name = "btnCancelarCocheModificar";
-            this.btnCancelarCocheModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarCocheModificar.TabIndex = 19;
-            this.btnCancelarCocheModificar.Text = "Cancelar";
-            this.btnCancelarCocheModificar.UseVisualStyleBackColor = true;
-            this.btnCancelarCocheModificar.Click += new System.EventHandler(this.btnCancelarCocheModificar_Click);
-            // 
-            // btnAceptarCocheModificar
-            // 
-            this.btnAceptarCocheModificar.Location = new System.Drawing.Point(436, 302);
-            this.btnAceptarCocheModificar.Name = "btnAceptarCocheModificar";
-            this.btnAceptarCocheModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarCocheModificar.TabIndex = 20;
-            this.btnAceptarCocheModificar.Text = "Aceptar";
-            this.btnAceptarCocheModificar.UseVisualStyleBackColor = true;
-            // 
-            // EditarCoche
+            // InfoCoche
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 336);
-            this.Controls.Add(this.btnAceptarCocheModificar);
-            this.Controls.Add(this.btnCancelarCocheModificar);
-            this.Controls.Add(this.cbTipoCocheModificar);
+            this.ClientSize = new System.Drawing.Size(604, 294);
+            this.Controls.Add(this.txtTipo);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.pImagenCocheModificar);
-            this.Controls.Add(this.txtPrecioCocheModificar);
-            this.Controls.Add(this.txtCVCocheModificar);
-            this.Controls.Add(this.txtMarcaCocheModificar);
-            this.Controls.Add(this.txtColorCocheModificar);
-            this.Controls.Add(this.txtMotorCocheModificar);
-            this.Controls.Add(this.txtModeloCocheModificar);
-            this.Controls.Add(this.txtBastidorCocheModificar);
+            this.Controls.Add(this.pImagen);
+            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtCV);
+            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtColor);
+            this.Controls.Add(this.txtMotor);
+            this.Controls.Add(this.txtModelo);
+            this.Controls.Add(this.txtBastidor);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -244,9 +228,9 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "EditarCoche";
+            this.Name = "InfoCoche";
             this.Text = "Editar coche";
-            ((System.ComponentModel.ISupportInitialize)(this.pImagenCocheModificar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,17 +246,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtBastidorCocheModificar;
-        private System.Windows.Forms.TextBox txtModeloCocheModificar;
-        private System.Windows.Forms.TextBox txtMotorCocheModificar;
-        private System.Windows.Forms.TextBox txtColorCocheModificar;
-        private System.Windows.Forms.TextBox txtMarcaCocheModificar;
-        private System.Windows.Forms.TextBox txtCVCocheModificar;
-        private System.Windows.Forms.TextBox txtPrecioCocheModificar;
-        private System.Windows.Forms.PictureBox pImagenCocheModificar;
+        private System.Windows.Forms.TextBox txtBastidor;
+        private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.TextBox txtMotor;
+        private System.Windows.Forms.TextBox txtColor;
+        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtCV;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.PictureBox pImagen;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cbTipoCocheModificar;
-        private System.Windows.Forms.Button btnCancelarCocheModificar;
-        private System.Windows.Forms.Button btnAceptarCocheModificar;
+        private System.Windows.Forms.TextBox txtTipo;
     }
 }

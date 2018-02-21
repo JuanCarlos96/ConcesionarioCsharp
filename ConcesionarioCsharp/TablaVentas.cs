@@ -18,6 +18,7 @@ namespace ConcesionarioCsharp
         private SQLiteDataAdapter DataAdapDni;
         private AutoCompleteStringCollection autoComplete = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection autoComplete2 = new AutoCompleteStringCollection();
+        bool guardado = true;
 
         public TablaVentas(ConectorSQLite con)
         {
@@ -172,6 +173,7 @@ namespace ConcesionarioCsharp
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+            guardado = false;
         }
 
         public void guardar()
@@ -225,17 +227,15 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
+                Opener.pasadatos("ventas2");
+                guardado = true;
             }
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             Opener.pasadatos("ventas");
-        }
-
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            Opener.pasadatos("ventas2");
+            guardado = false;
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
