@@ -8,10 +8,11 @@ namespace ConcesionarioCsharp
 {
     public partial class TablaClientes : Form
     {
-        private InfoCliente editarCliente = new InfoCliente();
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private SQLiteDataAdapter DataAdap;
+        private TablaVentas TablaVentas;
+        bool guardado = true;
 
         public TablaClientes(ConectorSQLite con)
         {
@@ -20,6 +21,7 @@ namespace ConcesionarioCsharp
             string sql;
             sql = "SELECT * FROM Cliente";
             iniciar_datagrid(sql);
+            TablaVentas = new TablaVentas();
         }
 
         public Interfaz Opener { get; set; }
@@ -92,6 +94,7 @@ namespace ConcesionarioCsharp
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+            guardado = false;
         }
 
         public void guardar()
@@ -154,17 +157,85 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
+                Opener.pasadatos("clientes2");
+                guardado = true;
+                TablaVentas.rellenarComboDni();
             }
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             Opener.pasadatos("clientes");
+            guardado = false;
         }
 
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            Opener.pasadatos("clientes2");
+            this.guardar();
+        }
+
+        //Funciones de teclado
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+                switch (keyData)
+                {
+                    case (Keys.B):
+                        if ((MessageBox.Show("¿Desea borrar el cliente seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                        {
+                            dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                            this.guardar();
+                        }
+                        break;
+                    case (Keys.I):
+                        InfoCliente infoCliente = new InfoCliente(this.conector, dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                        infoCliente.ShowDialog();
+                        break;
+                }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        public void funcion_menucontextual(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "Editar":
+                    InfoCliente infoCliente = new InfoCliente(this.conector, dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                    infoCliente.ShowDialog();
+                    break;
+                case "Borrar":
+                    if ((MessageBox.Show("¿Desea borrar el cliente seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                    {
+                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                        this.guardar();
+                    }
+                    break;
+            }
+            dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right & guardado)
+            {
+                dataGridView1.ClearSelection();
+                int currentMouseOverRow = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+
+                if (currentMouseOverRow >= 0)
+                {
+                    ContextMenuStrip m = new ContextMenuStrip();
+                    m.Items.Add("Ver Ficha").Name = "Editar";
+                    //m.Items[0].Image = Properties.Resources.editar;
+                    m.Items.Add("Borrar").Name = "Borrar";
+                    //m.Items[1].Image = Properties.Resources.borra;
+                    dataGridView1.Rows[currentMouseOverRow].Selected = true;
+                    m.ItemClicked += new ToolStripItemClickedEventHandler(funcion_menucontextual);
+                    m.Show(dataGridView1, new Point(e.X, e.Y));
+                }
+            }
+            else if (e.Button == MouseButtons.Right & !guardado)
+                MessageBox.Show("El menú contextual se activa cuando todo está guardado");
         }
     }
 }

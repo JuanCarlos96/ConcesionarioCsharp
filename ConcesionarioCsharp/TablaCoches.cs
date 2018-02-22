@@ -11,6 +11,8 @@ namespace ConcesionarioCsharp
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private SQLiteDataAdapter DataAdap;
+        private TablaVentas TablaVentas;
+        private TablaRevisiones TablaRevisiones;
         bool guardado = true;
 
         public TablaCoches(ConectorSQLite con)
@@ -20,6 +22,8 @@ namespace ConcesionarioCsharp
             string sql;
             sql = "SELECT * FROM Coche";
             iniciar_datagrid(sql);
+            TablaVentas = new TablaVentas();
+            TablaRevisiones = new TablaRevisiones();
         }
 
         public Interfaz Opener { get; set; }
@@ -210,6 +214,8 @@ namespace ConcesionarioCsharp
                 dataGridView1.DataSource = dtRecord;
                 Opener.pasadatos("coches2");
                 guardado = true;
+                TablaVentas.rellenarComboBastidor();
+                TablaRevisiones.rellenarComboBastidor();
             }
         }
 
@@ -311,7 +317,7 @@ namespace ConcesionarioCsharp
                     }
                     break;
             }
-            dataGridView1.ClearSelection();//Deselecciono fila
+            dataGridView1.ClearSelection();
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)

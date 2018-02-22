@@ -8,7 +8,6 @@ namespace ConcesionarioCsharp
 {
     public partial class TablaVentas : Form
     {
-        private InfoVenta editarVenta = new InfoVenta();
         private ConectorSQLite conector;
         private DataTable dtRecord;
         private DataTable dtRecordBastidor;
@@ -18,6 +17,10 @@ namespace ConcesionarioCsharp
         private SQLiteDataAdapter DataAdapDni;
         private AutoCompleteStringCollection autoComplete = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection autoComplete2 = new AutoCompleteStringCollection();
+        private DateTimePicker calendario;
+        bool guardado = true;
+
+        public TablaVentas() { }
 
         public TablaVentas(ConectorSQLite con)
         {
@@ -55,12 +58,6 @@ namespace ConcesionarioCsharp
             dtRecordDni = new DataTable();
             DataAdapDni.Fill(dtRecordDni);
 
-            //Ponemos la columna de la PK a solo lectura para evitar problemas (repetición de números o que pueda modificarlo)
-            dataGridView1.Columns["N_Bastidor"].ReadOnly = true;
-            dataGridView1.Columns["Dni"].ReadOnly = true;
-            dataGridView1.Columns["N_Bastidor"].DefaultCellStyle.BackColor = Color.Gray;
-            dataGridView1.Columns["Dni"].DefaultCellStyle.BackColor = Color.Gray;
-
             //Anchos de Columnas
             dataGridView1.Columns[0].Width = 140;
             dataGridView1.Columns[0].HeaderText = "Bastidor";
@@ -73,14 +70,7 @@ namespace ConcesionarioCsharp
             DataGridViewTextBoxColumn busqueda = new DataGridViewTextBoxColumn();
             busqueda.Name = "Bastidor";
             busqueda.DataPropertyName = "N_Bastidor";
-            SQLiteCommand consulta2 = conector.DameComando();
-            consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
-            SQLiteDataReader reader = consulta2.ExecuteReader();
-            while (reader.Read())
-            {
-                autoComplete.Add(reader.GetString(0));
-            }
-            reader.Close();
+            this.rellenarComboBastidor();
             dataGridView1.Columns.RemoveAt(0);
             dataGridView1.Columns.Insert(0, busqueda);
             dataGridView1.Columns[0].Width = 170;
@@ -89,14 +79,7 @@ namespace ConcesionarioCsharp
             DataGridViewTextBoxColumn comboDni = new DataGridViewTextBoxColumn();
             comboDni.Name = "DNI";
             comboDni.DataPropertyName = "Dni";
-            SQLiteCommand consulta3 = conector.DameComando();
-            consulta3.CommandText = "SELECT Dni FROM Cliente";
-            SQLiteDataReader reader2 = consulta3.ExecuteReader();
-            while (reader2.Read())
-            {
-                autoComplete2.Add(reader2.GetString(0));
-            }
-            reader2.Close();
+            this.rellenarComboDni();
             dataGridView1.Columns.RemoveAt(1);
             dataGridView1.Columns.Insert(1, comboDni);
             dataGridView1.Columns[1].Width = 103;
@@ -135,10 +118,29 @@ namespace ConcesionarioCsharp
             DataAdap.DeleteCommand.Connection = conector.DameConexion();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void rellenarComboBastidor()
         {
-            Opener.pasadatos("ventas");
-            //editarVenta.ShowDialog();
+            ConectorSQLite conector = new ConectorSQLite();
+            SQLiteCommand consulta2 = conector.DameComando();
+            consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
+            SQLiteDataReader reader = consulta2.ExecuteReader();
+            while (reader.Read())
+            {
+                this.autoComplete.Add(reader.GetString(0));
+            }
+            reader.Close();
+        }
+
+        public void rellenarComboDni() {
+            ConectorSQLite conector = new ConectorSQLite();
+            SQLiteCommand consulta3 = conector.DameComando();
+            consulta3.CommandText = "SELECT Dni FROM Cliente";
+            SQLiteDataReader reader2 = consulta3.ExecuteReader();
+            while (reader2.Read())
+            {
+                autoComplete2.Add(reader2.GetString(0));
+            }
+            reader2.Close();
         }
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -172,6 +174,7 @@ namespace ConcesionarioCsharp
             dtRecord.Rows.Add(fila);
             dataGridView1.DataSource = dtRecord;
             dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0];
+            guardado = false;
         }
 
         public void guardar()
@@ -225,17 +228,20 @@ namespace ConcesionarioCsharp
                 dtRecord = new DataTable();
                 DataAdap.Fill(dtRecord);
                 dataGridView1.DataSource = dtRecord;
+                Opener.pasadatos("ventas2");
+                guardado = true;
             }
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             Opener.pasadatos("ventas");
+            guardado = false;
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            Opener.pasadatos("ventas2");
+            
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -246,6 +252,118 @@ namespace ConcesionarioCsharp
                     MessageBox.Show("Error en el precio, debe ser un número real");
                     break;
             }
+        }
+
+        private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            this.guardar();
+        }
+
+        //Funciones de teclado
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+                switch (keyData)
+                {
+                    case (Keys.B):
+                        if ((MessageBox.Show("¿Desea borrar la venta seleccionada?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                        {
+                            dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                            this.guardar();
+                        }
+                        break;
+                    case (Keys.I):
+                        InfoVenta infoVenta = new InfoVenta(this.conector, dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                        infoVenta.ShowDialog();
+                        break;
+                }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        public void funcion_menucontextual(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "Editar":
+                    InfoVenta infoVenta = new InfoVenta(this.conector, dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                    infoVenta.ShowDialog();
+                    break;
+                case "Borrar":
+                    if ((MessageBox.Show("¿Desea borrar la venta seleccionada?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                    {
+                        dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                        this.guardar();
+                    }
+                    break;
+            }
+            dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right & guardado)
+            {
+                dataGridView1.ClearSelection();
+                int currentMouseOverRow = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+
+                if (currentMouseOverRow >= 0)
+                {
+                    ContextMenuStrip m = new ContextMenuStrip();
+                    m.Items.Add("Ver Ficha").Name = "Editar";
+                    //m.Items[0].Image = Properties.Resources.editar;
+                    m.Items.Add("Borrar").Name = "Borrar";
+                    //m.Items[1].Image = Properties.Resources.borra;
+                    dataGridView1.Rows[currentMouseOverRow].Selected = true;
+                    m.ItemClicked += new ToolStripItemClickedEventHandler(funcion_menucontextual);
+                    m.Show(dataGridView1, new Point(e.X, e.Y));
+                }
+            }
+            else if (e.Button == MouseButtons.Right & !guardado)
+                MessageBox.Show("El menú contextual se activa cuando todo está guardado");
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 & e.ColumnIndex > -1)
+            {
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Fecha")
+                {
+                    //Inicializa el DateTimePicker Control  
+                    this.calendario = new DateTimePicker();
+                    //Añade el DateTimePicker control dentro del DataGridView   
+                    dataGridView1.Controls.Add(calendario);
+                    //Pone el formato sin hora  
+                    calendario.Format = DateTimePickerFormat.Short;
+                    // Esto me da el area rectangular del area de la celda
+                    Rectangle oRectangle = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                    //Le doy ese tamaño y localización 
+                    calendario.Size = new Size(oRectangle.Width, oRectangle.Height);
+                    calendario.Location = new Point(oRectangle.X, oRectangle.Y);
+                    //Se crea un evento para que se cierre el control al utilizarlo 
+                    calendario.CloseUp += new EventHandler(oDateTimePicker_CloseUp);
+                    //Un evento para que coloque la fecha en la celda
+                    calendario.TextChanged += new EventHandler(dateTimePicker_OnTextChange);
+                    //Coloca la fecha actual de forma inicial
+                    dataGridView1.CurrentRow.Cells[2].Value = calendario.Text.ToString();
+                    // Hace visible el calendario
+                    calendario.Visible = true;
+                    Opener.pasadatos("ventas");
+                    guardado = false;
+                }
+            }
+        }
+
+        private void dateTimePicker_OnTextChange(object sender, EventArgs e)
+        {
+            //Guarda fecha en la celda
+            dataGridView1.CurrentRow.Cells[2].Value = calendario.Text.ToString();
+        }
+        
+        private void oDateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            //Oculta el control de la celda (pestaña)
+            calendario.Visible = false;
         }
     }
 }

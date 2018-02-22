@@ -34,16 +34,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtBastidorRevisionModificar = new System.Windows.Forms.TextBox();
-            this.txtMarcaRevisionModificar = new System.Windows.Forms.TextBox();
-            this.txtModeloRevisionModificar = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.btnCancelarRevisionModificar = new System.Windows.Forms.Button();
-            this.btnAceptarRevisionModificar = new System.Windows.Forms.Button();
-            this.lblNRevisionRevisionModificar = new System.Windows.Forms.Label();
-            this.lblFechaRevisionModificar = new System.Windows.Forms.Label();
+            this.txtBastidor = new System.Windows.Forms.TextBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.chkFrenos = new System.Windows.Forms.CheckBox();
+            this.chkAceite = new System.Windows.Forms.CheckBox();
+            this.chkFiltro = new System.Windows.Forms.CheckBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtFecha = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -85,115 +83,98 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 144);
+            this.label5.Location = new System.Drawing.Point(12, 133);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Modelo";
             // 
-            // txtBastidorRevisionModificar
+            // txtBastidor
             // 
-            this.txtBastidorRevisionModificar.Location = new System.Drawing.Point(15, 103);
-            this.txtBastidorRevisionModificar.Name = "txtBastidorRevisionModificar";
-            this.txtBastidorRevisionModificar.Size = new System.Drawing.Size(148, 20);
-            this.txtBastidorRevisionModificar.TabIndex = 5;
+            this.txtBastidor.Enabled = false;
+            this.txtBastidor.Location = new System.Drawing.Point(15, 93);
+            this.txtBastidor.Name = "txtBastidor";
+            this.txtBastidor.Size = new System.Drawing.Size(148, 20);
+            this.txtBastidor.TabIndex = 5;
             // 
-            // txtMarcaRevisionModificar
+            // txtMarca
             // 
-            this.txtMarcaRevisionModificar.Location = new System.Drawing.Point(178, 103);
-            this.txtMarcaRevisionModificar.Name = "txtMarcaRevisionModificar";
-            this.txtMarcaRevisionModificar.Size = new System.Drawing.Size(148, 20);
-            this.txtMarcaRevisionModificar.TabIndex = 6;
+            this.txtMarca.Enabled = false;
+            this.txtMarca.Location = new System.Drawing.Point(178, 93);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(148, 20);
+            this.txtMarca.TabIndex = 6;
             // 
-            // txtModeloRevisionModificar
+            // txtModelo
             // 
-            this.txtModeloRevisionModificar.Location = new System.Drawing.Point(15, 169);
-            this.txtModeloRevisionModificar.Name = "txtModeloRevisionModificar";
-            this.txtModeloRevisionModificar.Size = new System.Drawing.Size(148, 20);
-            this.txtModeloRevisionModificar.TabIndex = 7;
+            this.txtModelo.Enabled = false;
+            this.txtModelo.Location = new System.Drawing.Point(15, 149);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Size = new System.Drawing.Size(148, 20);
+            this.txtModelo.TabIndex = 7;
             // 
-            // checkBox1
+            // chkFrenos
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 219);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(114, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Revisión de frenos";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkFrenos.AutoSize = true;
+            this.chkFrenos.Enabled = false;
+            this.chkFrenos.Location = new System.Drawing.Point(15, 188);
+            this.chkFrenos.Name = "chkFrenos";
+            this.chkFrenos.Size = new System.Drawing.Size(114, 17);
+            this.chkFrenos.TabIndex = 8;
+            this.chkFrenos.Text = "Revisión de frenos";
+            this.chkFrenos.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chkAceite
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(15, 242);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(108, 17);
-            this.checkBox2.TabIndex = 9;
-            this.checkBox2.Text = "Cambio de aceite";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkAceite.AutoSize = true;
+            this.chkAceite.Enabled = false;
+            this.chkAceite.Location = new System.Drawing.Point(15, 211);
+            this.chkAceite.Name = "chkAceite";
+            this.chkAceite.Size = new System.Drawing.Size(108, 17);
+            this.chkAceite.TabIndex = 9;
+            this.chkAceite.Text = "Cambio de aceite";
+            this.chkAceite.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // chkFiltro
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(15, 265);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(98, 17);
-            this.checkBox3.TabIndex = 10;
-            this.checkBox3.Text = "Cambio de filtro";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chkFiltro.AutoSize = true;
+            this.chkFiltro.Enabled = false;
+            this.chkFiltro.Location = new System.Drawing.Point(15, 234);
+            this.chkFiltro.Name = "chkFiltro";
+            this.chkFiltro.Size = new System.Drawing.Size(98, 17);
+            this.chkFiltro.TabIndex = 10;
+            this.chkFiltro.Text = "Cambio de filtro";
+            this.chkFiltro.UseVisualStyleBackColor = true;
             // 
-            // btnCancelarRevisionModificar
+            // txtId
             // 
-            this.btnCancelarRevisionModificar.Location = new System.Drawing.Point(251, 295);
-            this.btnCancelarRevisionModificar.Name = "btnCancelarRevisionModificar";
-            this.btnCancelarRevisionModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarRevisionModificar.TabIndex = 11;
-            this.btnCancelarRevisionModificar.Text = "Cancelar";
-            this.btnCancelarRevisionModificar.UseVisualStyleBackColor = true;
-            this.btnCancelarRevisionModificar.Click += new System.EventHandler(this.btnCancelarRevisionModificar_Click);
+            this.txtId.Enabled = false;
+            this.txtId.Location = new System.Drawing.Point(15, 37);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(148, 20);
+            this.txtId.TabIndex = 11;
             // 
-            // btnAceptarRevisionModificar
+            // txtFecha
             // 
-            this.btnAceptarRevisionModificar.Location = new System.Drawing.Point(170, 295);
-            this.btnAceptarRevisionModificar.Name = "btnAceptarRevisionModificar";
-            this.btnAceptarRevisionModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarRevisionModificar.TabIndex = 12;
-            this.btnAceptarRevisionModificar.Text = "Aceptar";
-            this.btnAceptarRevisionModificar.UseVisualStyleBackColor = true;
+            this.txtFecha.Enabled = false;
+            this.txtFecha.Location = new System.Drawing.Point(178, 37);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(148, 20);
+            this.txtFecha.TabIndex = 12;
             // 
-            // lblNRevisionRevisionModificar
-            // 
-            this.lblNRevisionRevisionModificar.AutoSize = true;
-            this.lblNRevisionRevisionModificar.Location = new System.Drawing.Point(84, 21);
-            this.lblNRevisionRevisionModificar.Name = "lblNRevisionRevisionModificar";
-            this.lblNRevisionRevisionModificar.Size = new System.Drawing.Size(52, 13);
-            this.lblNRevisionRevisionModificar.TabIndex = 13;
-            this.lblNRevisionRevisionModificar.Text = "               ";
-            // 
-            // lblFechaRevisionModificar
-            // 
-            this.lblFechaRevisionModificar.AutoSize = true;
-            this.lblFechaRevisionModificar.Location = new System.Drawing.Point(221, 21);
-            this.lblFechaRevisionModificar.Name = "lblFechaRevisionModificar";
-            this.lblFechaRevisionModificar.Size = new System.Drawing.Size(58, 13);
-            this.lblFechaRevisionModificar.TabIndex = 14;
-            this.lblFechaRevisionModificar.Text = "                 ";
-            // 
-            // EditarRevision
+            // InfoRevision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 331);
-            this.Controls.Add(this.lblFechaRevisionModificar);
-            this.Controls.Add(this.lblNRevisionRevisionModificar);
-            this.Controls.Add(this.btnAceptarRevisionModificar);
-            this.Controls.Add(this.btnCancelarRevisionModificar);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.txtModeloRevisionModificar);
-            this.Controls.Add(this.txtMarcaRevisionModificar);
-            this.Controls.Add(this.txtBastidorRevisionModificar);
+            this.ClientSize = new System.Drawing.Size(340, 263);
+            this.Controls.Add(this.txtFecha);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.chkFiltro);
+            this.Controls.Add(this.chkAceite);
+            this.Controls.Add(this.chkFrenos);
+            this.Controls.Add(this.txtModelo);
+            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtBastidor);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -201,8 +182,8 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "EditarRevision";
-            this.Text = "Editar revisión";
+            this.Name = "InfoRevision";
+            this.Text = "Información de la revisión";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,15 +196,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtBastidorRevisionModificar;
-        private System.Windows.Forms.TextBox txtMarcaRevisionModificar;
-        private System.Windows.Forms.TextBox txtModeloRevisionModificar;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Button btnCancelarRevisionModificar;
-        private System.Windows.Forms.Button btnAceptarRevisionModificar;
-        private System.Windows.Forms.Label lblNRevisionRevisionModificar;
-        private System.Windows.Forms.Label lblFechaRevisionModificar;
+        private System.Windows.Forms.TextBox txtBastidor;
+        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.CheckBox chkFrenos;
+        private System.Windows.Forms.CheckBox chkAceite;
+        private System.Windows.Forms.CheckBox chkFiltro;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtFecha;
     }
 }

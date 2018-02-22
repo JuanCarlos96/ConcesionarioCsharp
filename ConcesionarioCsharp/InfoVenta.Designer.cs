@@ -30,15 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoVenta));
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtDniVentaModificar = new System.Windows.Forms.TextBox();
-            this.txtBastidorVentaModificar = new System.Windows.Forms.TextBox();
-            this.txtPrecioVentaModificar = new System.Windows.Forms.TextBox();
-            this.btnCancelarVentaModificar = new System.Windows.Forms.Button();
-            this.btnAceptarVentaModificar = new System.Windows.Forms.Button();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.txtCoche = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtFecha = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -49,13 +47,6 @@
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Fecha:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(58, 19);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 1;
             // 
             // label2
             // 
@@ -84,65 +75,55 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Precio:";
             // 
-            // txtDniVentaModificar
+            // txtCliente
             // 
-            this.txtDniVentaModificar.Location = new System.Drawing.Point(60, 75);
-            this.txtDniVentaModificar.Name = "txtDniVentaModificar";
-            this.txtDniVentaModificar.Size = new System.Drawing.Size(142, 20);
-            this.txtDniVentaModificar.TabIndex = 5;
+            this.txtCliente.Enabled = false;
+            this.txtCliente.Location = new System.Drawing.Point(60, 75);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(142, 20);
+            this.txtCliente.TabIndex = 5;
             // 
-            // txtBastidorVentaModificar
+            // txtCoche
             // 
-            this.txtBastidorVentaModificar.Location = new System.Drawing.Point(60, 136);
-            this.txtBastidorVentaModificar.Name = "txtBastidorVentaModificar";
-            this.txtBastidorVentaModificar.Size = new System.Drawing.Size(142, 20);
-            this.txtBastidorVentaModificar.TabIndex = 6;
+            this.txtCoche.Enabled = false;
+            this.txtCoche.Location = new System.Drawing.Point(60, 136);
+            this.txtCoche.Name = "txtCoche";
+            this.txtCoche.Size = new System.Drawing.Size(142, 20);
+            this.txtCoche.TabIndex = 6;
             // 
-            // txtPrecioVentaModificar
+            // txtPrecio
             // 
-            this.txtPrecioVentaModificar.Location = new System.Drawing.Point(60, 199);
-            this.txtPrecioVentaModificar.Name = "txtPrecioVentaModificar";
-            this.txtPrecioVentaModificar.Size = new System.Drawing.Size(76, 20);
-            this.txtPrecioVentaModificar.TabIndex = 7;
+            this.txtPrecio.Enabled = false;
+            this.txtPrecio.Location = new System.Drawing.Point(60, 199);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(76, 20);
+            this.txtPrecio.TabIndex = 7;
             // 
-            // btnCancelarVentaModificar
+            // txtFecha
             // 
-            this.btnCancelarVentaModificar.Location = new System.Drawing.Point(185, 246);
-            this.btnCancelarVentaModificar.Name = "btnCancelarVentaModificar";
-            this.btnCancelarVentaModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarVentaModificar.TabIndex = 8;
-            this.btnCancelarVentaModificar.Text = "Cancelar";
-            this.btnCancelarVentaModificar.UseVisualStyleBackColor = true;
-            this.btnCancelarVentaModificar.Click += new System.EventHandler(this.btnCancelarVentaModificar_Click);
+            this.txtFecha.Enabled = false;
+            this.txtFecha.Location = new System.Drawing.Point(60, 22);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(142, 20);
+            this.txtFecha.TabIndex = 8;
             // 
-            // btnAceptarVentaModificar
-            // 
-            this.btnAceptarVentaModificar.Location = new System.Drawing.Point(104, 246);
-            this.btnAceptarVentaModificar.Name = "btnAceptarVentaModificar";
-            this.btnAceptarVentaModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarVentaModificar.TabIndex = 9;
-            this.btnAceptarVentaModificar.Text = "Aceptar";
-            this.btnAceptarVentaModificar.UseVisualStyleBackColor = true;
-            // 
-            // EditarVenta
+            // InfoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 281);
-            this.Controls.Add(this.btnAceptarVentaModificar);
-            this.Controls.Add(this.btnCancelarVentaModificar);
-            this.Controls.Add(this.txtPrecioVentaModificar);
-            this.Controls.Add(this.txtBastidorVentaModificar);
-            this.Controls.Add(this.txtDniVentaModificar);
+            this.ClientSize = new System.Drawing.Size(272, 235);
+            this.Controls.Add(this.txtFecha);
+            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtCoche);
+            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "EditarVenta";
-            this.Text = "Editar venta";
+            this.Name = "InfoVenta";
+            this.Text = "Información de la venta";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,14 +132,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtDniVentaModificar;
-        private System.Windows.Forms.TextBox txtBastidorVentaModificar;
-        private System.Windows.Forms.TextBox txtPrecioVentaModificar;
-        private System.Windows.Forms.Button btnCancelarVentaModificar;
-        private System.Windows.Forms.Button btnAceptarVentaModificar;
+        private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.TextBox txtCoche;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtFecha;
     }
 }

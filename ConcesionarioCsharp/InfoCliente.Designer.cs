@@ -34,13 +34,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtDniClienteModificar = new System.Windows.Forms.TextBox();
-            this.txtNombreClienteModificar = new System.Windows.Forms.TextBox();
-            this.txtApellidosClienteModificar = new System.Windows.Forms.TextBox();
-            this.txtTelefonoClienteModificar = new System.Windows.Forms.TextBox();
-            this.txtDireccionClienteModificar = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtDni = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtApellidos = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -88,72 +86,56 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Dirección";
             // 
-            // txtDniClienteModificar
+            // txtDni
             // 
-            this.txtDniClienteModificar.Location = new System.Drawing.Point(15, 39);
-            this.txtDniClienteModificar.Name = "txtDniClienteModificar";
-            this.txtDniClienteModificar.Size = new System.Drawing.Size(135, 20);
-            this.txtDniClienteModificar.TabIndex = 5;
+            this.txtDni.Enabled = false;
+            this.txtDni.Location = new System.Drawing.Point(15, 39);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(135, 20);
+            this.txtDni.TabIndex = 5;
             // 
-            // txtNombreClienteModificar
+            // txtNombre
             // 
-            this.txtNombreClienteModificar.Location = new System.Drawing.Point(186, 40);
-            this.txtNombreClienteModificar.Name = "txtNombreClienteModificar";
-            this.txtNombreClienteModificar.Size = new System.Drawing.Size(135, 20);
-            this.txtNombreClienteModificar.TabIndex = 6;
+            this.txtNombre.Enabled = false;
+            this.txtNombre.Location = new System.Drawing.Point(186, 40);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(135, 20);
+            this.txtNombre.TabIndex = 6;
             // 
-            // txtApellidosClienteModificar
+            // txtApellidos
             // 
-            this.txtApellidosClienteModificar.Location = new System.Drawing.Point(15, 115);
-            this.txtApellidosClienteModificar.Name = "txtApellidosClienteModificar";
-            this.txtApellidosClienteModificar.Size = new System.Drawing.Size(135, 20);
-            this.txtApellidosClienteModificar.TabIndex = 7;
+            this.txtApellidos.Enabled = false;
+            this.txtApellidos.Location = new System.Drawing.Point(15, 115);
+            this.txtApellidos.Name = "txtApellidos";
+            this.txtApellidos.Size = new System.Drawing.Size(135, 20);
+            this.txtApellidos.TabIndex = 7;
             // 
-            // txtTelefonoClienteModificar
+            // txtTelefono
             // 
-            this.txtTelefonoClienteModificar.Location = new System.Drawing.Point(186, 115);
-            this.txtTelefonoClienteModificar.Name = "txtTelefonoClienteModificar";
-            this.txtTelefonoClienteModificar.Size = new System.Drawing.Size(135, 20);
-            this.txtTelefonoClienteModificar.TabIndex = 8;
+            this.txtTelefono.Enabled = false;
+            this.txtTelefono.Location = new System.Drawing.Point(186, 115);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(135, 20);
+            this.txtTelefono.TabIndex = 8;
             // 
-            // txtDireccionClienteModificar
+            // txtDireccion
             // 
-            this.txtDireccionClienteModificar.Location = new System.Drawing.Point(15, 198);
-            this.txtDireccionClienteModificar.Name = "txtDireccionClienteModificar";
-            this.txtDireccionClienteModificar.Size = new System.Drawing.Size(306, 20);
-            this.txtDireccionClienteModificar.TabIndex = 9;
+            this.txtDireccion.Enabled = false;
+            this.txtDireccion.Location = new System.Drawing.Point(15, 198);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(306, 20);
+            this.txtDireccion.TabIndex = 9;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(246, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(165, 237);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Aceptar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // EditarCliente
+            // InfoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 272);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtDireccionClienteModificar);
-            this.Controls.Add(this.txtTelefonoClienteModificar);
-            this.Controls.Add(this.txtApellidosClienteModificar);
-            this.Controls.Add(this.txtNombreClienteModificar);
-            this.Controls.Add(this.txtDniClienteModificar);
+            this.ClientSize = new System.Drawing.Size(334, 233);
+            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.txtTelefono);
+            this.Controls.Add(this.txtApellidos);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.txtDni);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -161,8 +143,8 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "EditarCliente";
-            this.Text = "Editar cliente";
+            this.Name = "InfoCliente";
+            this.Text = "Información del cliente";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,12 +157,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDniClienteModificar;
-        private System.Windows.Forms.TextBox txtNombreClienteModificar;
-        private System.Windows.Forms.TextBox txtApellidosClienteModificar;
-        private System.Windows.Forms.TextBox txtTelefonoClienteModificar;
-        private System.Windows.Forms.TextBox txtDireccionClienteModificar;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtDni;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtApellidos;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.TextBox txtDireccion;
     }
 }

@@ -30,11 +30,14 @@ namespace ConcesionarioCsharp
 
         private void ventas_Click(object sender, EventArgs e)
         {
+            tablaVentas.rellenarComboBastidor();
+            tablaVentas.rellenarComboDni();
             this.abrir_hijo(1);
         }
 
         private void revisiones_Click(object sender, EventArgs e)
         {
+            tablaRevisiones.rellenarComboBastidor();
             this.abrir_hijo(2);
         }
 
