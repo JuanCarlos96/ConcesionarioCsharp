@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Finisar.SQLite;
 
 namespace ConcesionarioCsharp
 {
@@ -10,6 +11,7 @@ namespace ConcesionarioCsharp
         private TablaRevisiones tablaRevisiones;
         private TablaClientes tablaClientes;
         private ConectorSQLite con;
+        private FormInforme ventana_informe;
 
         public FormMain()
         {
@@ -19,6 +21,8 @@ namespace ConcesionarioCsharp
             tablaVentas = this.iniciar_ventas();
             tablaRevisiones = this.iniciar_revisiones();
             tablaClientes = this.iniciar_clientes();
+            rellenarComboMarcas();
+            ventana_informe = new FormInforme();
             //Abro la tabla de los coches cuando inicio el programa
             this.abrir_hijo(0);
         }
@@ -224,6 +228,7 @@ namespace ConcesionarioCsharp
                     tablaCoches.Validate();
                     tablaCoches.guardar(0);
                     tablaCoches.Refresh();
+                    rellenarComboMarcas();
                     break;
                 case "TablaRevisiones":
                     TablaRevisiones tablaRevisiones = (TablaRevisiones)this.ActiveMdiChild;
@@ -332,6 +337,57 @@ namespace ConcesionarioCsharp
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void rellenarComboMarcas()
+        {
+            this.cbMarcas.Items.Clear();
+            this.cbMarcas.Items.Add("Todos");
+            SQLiteCommand consulta = con.DameComando();
+            consulta.CommandText = "SELECT DISTINCT Marca FROM Coche";
+            SQLiteDataReader reader = consulta.ExecuteReader();
+            while (reader.Read())
+            {
+                this.cbMarcas.Items.Add(reader.GetString(0));
+            }
+            reader.Close();
+        }
+
+        private void cbMarcas_TextChanged(object sender, EventArgs e)
+        {
+            if(cbMarcas.Text == "Todos")
+            {
+                crea_informe("SELECT * FROM Coche");
+            }
+            else
+            {
+                string marca = cbMarcas.Text;
+                string sql = "SELECT * FROM Coche WHERE Marca = '"+marca+"'";
+                crea_informe(sql);
+            }
+        }
+
+        private void crea_informe(string sql)
+        {
+            SQLiteCommand consulta = con.DameComando();
+            consulta.CommandText = sql;
+            SQLiteDataAdapter DataAdap = new SQLiteDataAdapter(consulta);//Hace de intermediario entre la base de datos y el DataGrid
+            DataSet1 Ds = new DataSet1();//Se crea un DataSet
+            DataAdap.Fill(Ds, "Coche");//Se enlaza con el que hemos creado desde la interfaz gráfica
+
+            if (Ds.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos que mostrar, revisar la SQL", "Informe");
+                return;
+            }
+
+            InformeCoches informe = new InformeCoches(); ;//Se crea el objeto informe
+            informe.Load("..\\..\\CrystalReport1.rpt"); //Dado que el directorio es debug, he de salir a la raiz
+            informe.SetDataSource(Ds);//Se toma el origen de datos del informe
+
+            ventana_informe.crystalReportViewer1.ReportSource = informe;//Añadimos al Viewer el informe que vamos a mostrar
+            ventana_informe.crystalReportViewer1.Refresh();//Se actualiza el informe
+            ventana_informe.ShowDialog();//Muestro la ventana de diálogo
         }
     }
 }

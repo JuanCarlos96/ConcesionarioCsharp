@@ -45,6 +45,8 @@
             this.revisiones = new System.Windows.Forms.ToolStripButton();
             this.ventas = new System.Windows.Forms.ToolStripButton();
             this.clientes = new System.Windows.Forms.ToolStripButton();
+            this.informeDeCochesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbMarcas = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +92,8 @@
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.informeDeCochesToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(66, 20);
             this.toolStripMenuItem2.Text = "&Informes";
@@ -194,7 +198,7 @@
             this.ventas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ventas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ventas.Name = "ventas";
-            this.ventas.Size = new System.Drawing.Size(46, 51);
+            this.ventas.Size = new System.Drawing.Size(45, 51);
             this.ventas.Text = "&Ventas";
             this.ventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ventas.Click += new System.EventHandler(this.ventas_Click);
@@ -209,6 +213,20 @@
             this.clientes.Text = "C&lientes";
             this.clientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.clientes.Click += new System.EventHandler(this.clientes_Click);
+            // 
+            // informeDeCochesToolStripMenuItem
+            // 
+            this.informeDeCochesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cbMarcas});
+            this.informeDeCochesToolStripMenuItem.Name = "informeDeCochesToolStripMenuItem";
+            this.informeDeCochesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.informeDeCochesToolStripMenuItem.Text = "Informe de Coches";
+            // 
+            // cbMarcas
+            // 
+            this.cbMarcas.Name = "cbMarcas";
+            this.cbMarcas.Size = new System.Drawing.Size(152, 23);
+            this.cbMarcas.TextChanged += new System.EventHandler(this.cbMarcas_TextChanged);
             // 
             // FormMain
             // 
@@ -251,6 +269,8 @@
         private System.Windows.Forms.ToolStripMenuItem reiniciarBaseDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem informeDeCochesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox cbMarcas;
     }
 }
 
