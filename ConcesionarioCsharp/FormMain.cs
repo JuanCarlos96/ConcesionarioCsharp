@@ -32,12 +32,18 @@ namespace ConcesionarioCsharp
         {
             tablaVentas.rellenarComboBastidor();
             tablaVentas.rellenarComboDni();
+            this.tablaVentas.Validate();
+            this.tablaVentas.guardar(1);
+            this.tablaVentas.Refresh();
             this.abrir_hijo(1);
         }
 
         private void revisiones_Click(object sender, EventArgs e)
         {
             tablaRevisiones.rellenarComboBastidor();
+            this.tablaRevisiones.Validate();
+            this.tablaRevisiones.guardar(1);
+            this.tablaRevisiones.Refresh();
             this.abrir_hijo(2);
         }
 
@@ -216,28 +222,116 @@ namespace ConcesionarioCsharp
                 case "TablaCoches":
                     TablaCoches tablaCoches = (TablaCoches)this.ActiveMdiChild;
                     tablaCoches.Validate();
-                    tablaCoches.guardar();
+                    tablaCoches.guardar(0);
                     tablaCoches.Refresh();
                     break;
                 case "TablaRevisiones":
                     TablaRevisiones tablaRevisiones = (TablaRevisiones)this.ActiveMdiChild;
                     tablaRevisiones.Validate();
-                    tablaRevisiones.guardar();
+                    tablaRevisiones.guardar(0);
                     tablaRevisiones.Refresh();
                     break;
                 case "TablaVentas":
                     TablaVentas tablaVentas = (TablaVentas)this.ActiveMdiChild;
                     tablaVentas.Validate();
-                    tablaVentas.guardar();
+                    tablaVentas.guardar(0);
                     tablaVentas.Refresh();
                     break;
                 default:
                     TablaClientes tablaClientes = (TablaClientes)this.ActiveMdiChild;
                     tablaClientes.Validate();
-                    tablaClientes.guardar();
+                    tablaClientes.guardar(0);
                     tablaClientes.Refresh();
                     break;
             }
+        }
+
+        private void reiniciarBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Se borrarán todos los datos, ¿desea reiniciar la base de datos?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                con.reiniciarBBDD();
+                tablaCoches.Validate();
+                tablaCoches.guardar(1);
+                tablaCoches.Refresh();
+                tablaRevisiones.Validate();
+                tablaRevisiones.guardar(1);
+                tablaRevisiones.Refresh();
+                tablaVentas.Validate();
+                tablaVentas.guardar(1);
+                tablaVentas.Refresh();
+                tablaClientes.Validate();
+                tablaClientes.guardar(1);
+                tablaClientes.Refresh();
+            }
+        }
+
+        //función local para controlar la salida
+        private bool salir()
+        {
+            if (toolStripButton1.Enabled == true)
+            {
+                if (MessageBox.Show("Hay datos sin Guardar. ¿Cerrar sin Guardar?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    return (true);//Sale
+                else
+                    return (false);
+            }
+            else
+                return (true);//Sale
+
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (salir() == true)
+                e.Cancel = false;
+            else
+            {
+                e.Cancel = true;
+                con.cerrarBBDD();
+            }
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Concesionario 3.0\nJuan Carlos Expósito Romero\nDesarrollo de interfaces 2DAM");
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Alt | Keys.N):
+                    toolStrip1.Items[1].PerformClick();
+                    break;
+                case (Keys.Alt | Keys.G):
+                    toolStrip1.Items[2].PerformClick();
+                    break;
+                case (Keys.Alt | Keys.C):
+                    toolStrip1.Items[3].PerformClick();
+                    break;
+                case (Keys.Control | Keys.E):
+                    toolStrip1.Items[4].PerformClick();
+                    break;
+                case (Keys.Alt | Keys.V):
+                    toolStrip1.Items[5].PerformClick();
+                    break;
+                case (Keys.Alt | Keys.L):
+                    toolStrip1.Items[6].PerformClick();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

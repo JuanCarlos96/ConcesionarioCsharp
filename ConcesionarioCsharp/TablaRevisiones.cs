@@ -113,7 +113,7 @@ namespace ConcesionarioCsharp
             comando_ins.Parameters.Add(new SQLiteParameter("@fecha", DbType.String));
             comando_ins.Parameters.Add(new SQLiteParameter("@frenos", DbType.String));
             comando_ins.Parameters.Add(new SQLiteParameter("@aceite", DbType.String));
-            comando_ins.Parameters.Add(new SQLiteParameter("@filtro", DbType.Int16));
+            comando_ins.Parameters.Add(new SQLiteParameter("@filtro", DbType.String));
             comando_ins.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
             comando_ins.Parameters[0].SourceColumn = "N_Revision";
             comando_ins.Parameters[1].SourceColumn = "Fecha";
@@ -149,6 +149,7 @@ namespace ConcesionarioCsharp
             SQLiteCommand consulta2 = conector.DameComando();
             consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
             SQLiteDataReader reader = consulta2.ExecuteReader();
+            this.autoComplete.Clear();
             while (reader.Read())
             {
                 autoComplete.Add(reader.GetString(0));
@@ -189,7 +190,7 @@ namespace ConcesionarioCsharp
             guardado = false;
         }
 
-        public void guardar()
+        public void guardar(int opcion)
         {
             bool correcto = true;
 
@@ -224,19 +225,38 @@ namespace ConcesionarioCsharp
                 }
             }
 
-            if (correcto)
-            {
-                dataGridView1.EndEdit();
-                DataAdap.Update(dtRecord);
-                MessageBox.Show("Datos guardados");
+            switch (opcion) {
+                case 0:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+                        MessageBox.Show("Datos guardados");
 
-                SQLiteCommand consulta = conector.DameComando();
-                consulta.CommandText = "SELECT * FROM Revision";
-                dtRecord = new DataTable();
-                DataAdap.Fill(dtRecord);
-                dataGridView1.DataSource = dtRecord;
-                Opener.pasadatos("revisiones2");
-                guardado = true;
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Revision";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("revisiones2");
+                        guardado = true;
+                    }
+                    break;
+                default:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Revision";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("revisiones2");
+                        guardado = true;
+                    }
+                    break;
             }
         }
 
@@ -248,7 +268,7 @@ namespace ConcesionarioCsharp
 
         private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            this.guardar();
+            this.guardar(0);
         }
 
         //Funciones de teclado
@@ -261,7 +281,7 @@ namespace ConcesionarioCsharp
                         if ((MessageBox.Show("¿Desea borrar la revisión seleccionada?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                         {
                             dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                            this.guardar();
+                            this.guardar(0);
                         }
                         break;
                     case (Keys.I):
@@ -285,7 +305,7 @@ namespace ConcesionarioCsharp
                     if ((MessageBox.Show("¿Desea borrar la revisión seleccionada?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
                         dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                        this.guardar();
+                        this.guardar(0);
                     }
                     break;
             }

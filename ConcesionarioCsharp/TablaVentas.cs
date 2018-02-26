@@ -124,6 +124,7 @@ namespace ConcesionarioCsharp
             SQLiteCommand consulta2 = conector.DameComando();
             consulta2.CommandText = "SELECT N_Bastidor FROM Coche";
             SQLiteDataReader reader = consulta2.ExecuteReader();
+            this.autoComplete.Clear();
             while (reader.Read())
             {
                 this.autoComplete.Add(reader.GetString(0));
@@ -136,6 +137,7 @@ namespace ConcesionarioCsharp
             SQLiteCommand consulta3 = conector.DameComando();
             consulta3.CommandText = "SELECT Dni FROM Cliente";
             SQLiteDataReader reader2 = consulta3.ExecuteReader();
+            this.autoComplete2.Clear();
             while (reader2.Read())
             {
                 autoComplete2.Add(reader2.GetString(0));
@@ -177,7 +179,7 @@ namespace ConcesionarioCsharp
             guardado = false;
         }
 
-        public void guardar()
+        public void guardar(int opcion)
         {
             bool correcto = true;
 
@@ -217,19 +219,39 @@ namespace ConcesionarioCsharp
                 }
             }
 
-            if (correcto)
+            switch (opcion)
             {
-                dataGridView1.EndEdit();
-                DataAdap.Update(dtRecord);
-                MessageBox.Show("Datos guardados");
+                case 0:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+                        MessageBox.Show("Datos guardados");
 
-                SQLiteCommand consulta = conector.DameComando();
-                consulta.CommandText = "SELECT * FROM Venta";
-                dtRecord = new DataTable();
-                DataAdap.Fill(dtRecord);
-                dataGridView1.DataSource = dtRecord;
-                Opener.pasadatos("ventas2");
-                guardado = true;
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Venta";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("ventas2");
+                        guardado = true;
+                    }
+                    break;
+                default:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Venta";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("ventas2");
+                        guardado = true;
+                    }
+                    break;
             }
         }
 
@@ -256,7 +278,7 @@ namespace ConcesionarioCsharp
 
         private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            this.guardar();
+            this.guardar(0);
         }
 
         //Funciones de teclado
@@ -269,7 +291,7 @@ namespace ConcesionarioCsharp
                         if ((MessageBox.Show("¿Desea borrar la venta seleccionada?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                         {
                             dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                            this.guardar();
+                            this.guardar(0);
                         }
                         break;
                     case (Keys.I):
@@ -293,7 +315,7 @@ namespace ConcesionarioCsharp
                     if ((MessageBox.Show("¿Desea borrar la venta seleccionada?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
                         dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                        this.guardar();
+                        this.guardar(0);
                     }
                     break;
             }

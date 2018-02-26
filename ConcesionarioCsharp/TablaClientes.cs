@@ -75,7 +75,7 @@ namespace ConcesionarioCsharp
             DataAdap.UpdateCommand.Connection = conector.DameConexion();
 
             //COMANDO DELETE
-            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Cliente WHERE Dni=@dni", conector.DameConexion());
+            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Cliente WHERE Dni = @dni; DELETE FROM Venta WHERE Dni = @dni", conector.DameConexion());
             comando_del.Parameters.Add(new SQLiteParameter("@dni", DbType.String));
             comando_del.Parameters[0].SourceColumn = "Dni";
             DataAdap.DeleteCommand = comando_del;
@@ -97,7 +97,7 @@ namespace ConcesionarioCsharp
             guardado = false;
         }
 
-        public void guardar()
+        public void guardar(int opcion)
         {
             bool correcto = true;
 
@@ -146,20 +146,40 @@ namespace ConcesionarioCsharp
                 }
             }
 
-            if (correcto)
-            {
-                dataGridView1.EndEdit();
-                DataAdap.Update(dtRecord);
-                MessageBox.Show("Datos guardados");
+            switch (opcion) {
+                case 0:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+                        MessageBox.Show("Datos guardados");
 
-                SQLiteCommand consulta = conector.DameComando();
-                consulta.CommandText = "SELECT * FROM Cliente";
-                dtRecord = new DataTable();
-                DataAdap.Fill(dtRecord);
-                dataGridView1.DataSource = dtRecord;
-                Opener.pasadatos("clientes2");
-                guardado = true;
-                TablaVentas.rellenarComboDni();
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Cliente";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("clientes2");
+                        guardado = true;
+                        TablaVentas.rellenarComboDni();
+                    }
+                    break;
+                default:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Cliente";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("clientes2");
+                        guardado = true;
+                        TablaVentas.rellenarComboDni();
+                    }
+                    break;
             }
         }
 
@@ -171,7 +191,7 @@ namespace ConcesionarioCsharp
 
         private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            this.guardar();
+            this.guardar(0);
         }
 
         //Funciones de teclado
@@ -184,7 +204,7 @@ namespace ConcesionarioCsharp
                         if ((MessageBox.Show("¿Desea borrar el cliente seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                         {
                             dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                            this.guardar();
+                            this.guardar(0);
                         }
                         break;
                     case (Keys.I):
@@ -208,7 +228,7 @@ namespace ConcesionarioCsharp
                     if ((MessageBox.Show("¿Desea borrar el cliente seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
                         dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                        this.guardar();
+                        this.guardar(0);
                     }
                     break;
             }

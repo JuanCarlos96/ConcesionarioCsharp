@@ -77,6 +77,7 @@
             this.reiniciarBaseDeDatosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
             this.reiniciarBaseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.reiniciarBaseDeDatosToolStripMenuItem.Text = "&Reiniciar Base de Datos";
+            this.reiniciarBaseDeDatosToolStripMenuItem.Click += new System.EventHandler(this.reiniciarBaseDeDatosToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -85,6 +86,7 @@
             this.salirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.salirToolStripMenuItem.Text = "&Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -108,6 +110,7 @@
             this.acercaDeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
             this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.acercaDeToolStripMenuItem.Text = "&Acerca de";
+            this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
             // manualToolStripMenuItem
             // 
@@ -116,6 +119,7 @@
             this.manualToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
             this.manualToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.manualToolStripMenuItem.Text = "&Manual";
+            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -140,7 +144,7 @@
             this.nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.nuevo.Name = "nuevo";
             this.nuevo.Size = new System.Drawing.Size(46, 51);
-            this.nuevo.Text = "Nuevo";
+            this.nuevo.Text = "&Nuevo";
             this.nuevo.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.nuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
@@ -153,7 +157,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(53, 51);
-            this.toolStripButton1.Text = "Guardar";
+            this.toolStripButton1.Text = "&Guardar";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -169,7 +173,7 @@
             this.coches.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.coches.Name = "coches";
             this.coches.Size = new System.Drawing.Size(50, 51);
-            this.coches.Text = "Coches";
+            this.coches.Text = "&Coches";
             this.coches.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.coches.Click += new System.EventHandler(this.coches_Click);
             // 
@@ -180,7 +184,7 @@
             this.revisiones.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.revisiones.Name = "revisiones";
             this.revisiones.Size = new System.Drawing.Size(66, 51);
-            this.revisiones.Text = "Revisiones";
+            this.revisiones.Text = "R&evisiones";
             this.revisiones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.revisiones.Click += new System.EventHandler(this.revisiones_Click);
             // 
@@ -191,7 +195,7 @@
             this.ventas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ventas.Name = "ventas";
             this.ventas.Size = new System.Drawing.Size(46, 51);
-            this.ventas.Text = "Ventas";
+            this.ventas.Text = "&Ventas";
             this.ventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ventas.Click += new System.EventHandler(this.ventas_Click);
             // 
@@ -202,7 +206,7 @@
             this.clientes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.clientes.Name = "clientes";
             this.clientes.Size = new System.Drawing.Size(53, 51);
-            this.clientes.Text = "Clientes";
+            this.clientes.Text = "C&lientes";
             this.clientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.clientes.Click += new System.EventHandler(this.clientes_Click);
             // 
@@ -219,6 +223,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Concesionario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

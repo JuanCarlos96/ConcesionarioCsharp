@@ -109,7 +109,7 @@ namespace ConcesionarioCsharp
             DataAdap.UpdateCommand.Connection = conector.DameConexion();
 
             //COMANDO DELETE
-            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Coche WHERE N_Bastidor = @bastidor", conector.DameConexion());
+            SQLiteCommand comando_del = new SQLiteCommand("DELETE FROM Coche WHERE N_Bastidor = @bastidor; DELETE FROM Revision WHERE N_Bastidor = @bastidor; DELETE FROM Venta WHERE N_Bastidor = @bastidor", conector.DameConexion());
             comando_del.Parameters.Add(new SQLiteParameter("@bastidor", DbType.String));
             comando_del.Parameters[0].SourceColumn = "N_Bastidor";
             DataAdap.DeleteCommand = comando_del;
@@ -131,11 +131,11 @@ namespace ConcesionarioCsharp
             guardado = false;
         }
 
-        public void guardar()
+        public void guardar(int opcion)
         {
             bool correcto = true;
 
-            for(int i=0; i<dataGridView1.RowCount; i++)
+            for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 string bastidor = dataGridView1.Rows[i].Cells[1].Value.ToString();
                 string marca = dataGridView1.Rows[i].Cells[2].Value.ToString();
@@ -146,25 +146,25 @@ namespace ConcesionarioCsharp
                 string color = dataGridView1.Rows[i].Cells[7].Value.ToString();
                 string precio = dataGridView1.Rows[i].Cells[8].Value.ToString();
 
-                if(bastidor == "")
+                if (bastidor == "")
                 {
                     MessageBox.Show("Bastidor vacío en fila " + (i + 1));
                     dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[1];
                     correcto = false;
                     break;
-                }else if(marca == "")
+                } else if (marca == "")
                 {
                     MessageBox.Show("Marca vacía en fila " + (i + 1));
                     dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[2];
                     correcto = false;
                     break;
-                }else if(modelo == "")
+                } else if (modelo == "")
                 {
                     MessageBox.Show("Modelo vacío en fila " + (i + 1));
                     dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[3];
                     correcto = false;
                     break;
-                }else if(motor == "")
+                } else if (motor == "")
                 {
                     MessageBox.Show("Motor vacío en fila " + (i + 1));
                     dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[4];
@@ -185,7 +185,7 @@ namespace ConcesionarioCsharp
                     correcto = false;
                     break;
                 }
-                else if(color == "")
+                else if (color == "")
                 {
                     MessageBox.Show("Color vacío en fila " + (i + 1));
                     dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[7];
@@ -201,21 +201,42 @@ namespace ConcesionarioCsharp
                 }
             }
 
-            if (correcto)
-            {
-                dataGridView1.EndEdit();
-                DataAdap.Update(dtRecord);
-                MessageBox.Show("Datos guardados");
+            switch (opcion) {
+                case 0:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+                        MessageBox.Show("Datos guardados");
 
-                SQLiteCommand consulta = conector.DameComando();
-                consulta.CommandText = "SELECT * FROM Coche";
-                dtRecord = new DataTable();
-                DataAdap.Fill(dtRecord);
-                dataGridView1.DataSource = dtRecord;
-                Opener.pasadatos("coches2");
-                guardado = true;
-                TablaVentas.rellenarComboBastidor();
-                TablaRevisiones.rellenarComboBastidor();
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Coche";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("coches2");
+                        guardado = true;
+                        TablaVentas.rellenarComboBastidor();
+                        TablaRevisiones.rellenarComboBastidor();
+                    }
+                    break;
+                default:
+                    if (correcto)
+                    {
+                        dataGridView1.EndEdit();
+                        DataAdap.Update(dtRecord);
+
+                        SQLiteCommand consulta = conector.DameComando();
+                        consulta.CommandText = "SELECT * FROM Coche";
+                        dtRecord = new DataTable();
+                        DataAdap.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                        Opener.pasadatos("coches2");
+                        guardado = true;
+                        TablaVentas.rellenarComboBastidor();
+                        TablaRevisiones.rellenarComboBastidor();
+                    }
+                    break;
             }
         }
 
@@ -275,7 +296,7 @@ namespace ConcesionarioCsharp
 
         private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            this.guardar();
+            this.guardar(0);
         }
 
         //Funciones de teclado
@@ -288,7 +309,7 @@ namespace ConcesionarioCsharp
                         if ((MessageBox.Show("¿Desea borrar el coche seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                         {
                             dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                            this.guardar();
+                            this.guardar(0);
                         }
                         break;
                     case (Keys.I):
@@ -313,7 +334,7 @@ namespace ConcesionarioCsharp
                     if ((MessageBox.Show("¿Desea borrar el coche seleccionado?", "Información", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
                         dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-                        this.guardar();
+                        this.guardar(0);
                     }
                     break;
             }
