@@ -82,12 +82,6 @@ namespace ConcesionarioCsharp
             DataAdap.DeleteCommand.Connection = conector.DameConexion();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Opener.pasadatos("clientes");
-            //editarCliente.ShowDialog();
-        }
-
         public void nuevaFila()
         {
             DataRow fila = dtRecord.NewRow();
@@ -108,6 +102,17 @@ namespace ConcesionarioCsharp
                 string apellidos = dataGridView1.Rows[i].Cells[2].Value.ToString();
                 string telefono = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 string direccion = dataGridView1.Rows[i].Cells[4].Value.ToString();
+
+                try
+                {
+                    int ntelefono = Convert.ToInt32(telefono);
+                }
+                catch(Exception e)
+                {
+                    correcto = false;
+                    MessageBox.Show("Número de teléfono incorrecto en fila " + (i + 1));
+                    dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[3];
+                }
 
                 if (dni == "")
                 {
@@ -150,22 +155,29 @@ namespace ConcesionarioCsharp
                 case 0:
                     if (correcto)
                     {
-                        dataGridView1.EndEdit();
-                        DataAdap.Update(dtRecord);
-                        MessageBox.Show("Datos guardados");
+                        try
+                        {
+                            dataGridView1.EndEdit();
+                            DataAdap.Update(dtRecord);
+                            MessageBox.Show("Datos guardados");
 
-                        SQLiteCommand consulta = conector.DameComando();
-                        consulta.CommandText = "SELECT * FROM Cliente";
-                        dtRecord = new DataTable();
-                        DataAdap.Fill(dtRecord);
-                        dataGridView1.DataSource = dtRecord;
-                        Opener.pasadatos("clientes2");
-                        guardado = true;
-                        TablaVentas.rellenarComboDni();
+                            SQLiteCommand consulta = conector.DameComando();
+                            consulta.CommandText = "SELECT * FROM Cliente";
+                            dtRecord = new DataTable();
+                            DataAdap.Fill(dtRecord);
+                            dataGridView1.DataSource = dtRecord;
+                            Opener.pasadatos("clientes2");
+                            guardado = true;
+                            TablaVentas.rellenarComboDni();
+                        }
+                        catch (Finisar.SQLite.SQLiteException exception)
+                        {
+                            MessageBox.Show(exception.Message);
+                        }
                     }
                     break;
                 default:
-                    if (correcto)
+                    try
                     {
                         dataGridView1.EndEdit();
                         DataAdap.Update(dtRecord);
@@ -178,6 +190,10 @@ namespace ConcesionarioCsharp
                         Opener.pasadatos("clientes2");
                         guardado = true;
                         TablaVentas.rellenarComboDni();
+                    }
+                    catch (Finisar.SQLite.SQLiteException exception)
+                    {
+                        MessageBox.Show(exception.Message);
                     }
                     break;
             }

@@ -205,36 +205,50 @@ namespace ConcesionarioCsharp
                 case 0:
                     if (correcto)
                     {
-                        dataGridView1.EndEdit();
-                        DataAdap.Update(dtRecord);
-                        MessageBox.Show("Datos guardados");
+                        try
+                        {
+                            dataGridView1.EndEdit();
+                            DataAdap.Update(dtRecord);
+                            MessageBox.Show("Datos guardados");
 
-                        SQLiteCommand consulta = conector.DameComando();
-                        consulta.CommandText = "SELECT * FROM Coche";
-                        dtRecord = new DataTable();
-                        DataAdap.Fill(dtRecord);
-                        dataGridView1.DataSource = dtRecord;
-                        Opener.pasadatos("coches2");
-                        guardado = true;
-                        TablaVentas.rellenarComboBastidor();
-                        TablaRevisiones.rellenarComboBastidor();
+                            SQLiteCommand consulta = conector.DameComando();
+                            consulta.CommandText = "SELECT * FROM Coche";
+                            dtRecord = new DataTable();
+                            DataAdap.Fill(dtRecord);
+                            dataGridView1.DataSource = dtRecord;
+                            Opener.pasadatos("coches2");
+                            guardado = true;
+                            TablaVentas.rellenarComboBastidor();
+                            TablaRevisiones.rellenarComboBastidor();
+                        }
+                        catch (Finisar.SQLite.SQLiteException exception)
+                        {
+                            MessageBox.Show(exception.Message);
+                        }
                     }
                     break;
                 default:
                     if (correcto)
                     {
-                        dataGridView1.EndEdit();
-                        DataAdap.Update(dtRecord);
+                        try
+                        {
+                            dataGridView1.EndEdit();
+                            DataAdap.Update(dtRecord);
 
-                        SQLiteCommand consulta = conector.DameComando();
-                        consulta.CommandText = "SELECT * FROM Coche";
-                        dtRecord = new DataTable();
-                        DataAdap.Fill(dtRecord);
-                        dataGridView1.DataSource = dtRecord;
-                        Opener.pasadatos("coches2");
-                        guardado = true;
-                        TablaVentas.rellenarComboBastidor();
-                        TablaRevisiones.rellenarComboBastidor();
+                            SQLiteCommand consulta = conector.DameComando();
+                            consulta.CommandText = "SELECT * FROM Coche";
+                            dtRecord = new DataTable();
+                            DataAdap.Fill(dtRecord);
+                            dataGridView1.DataSource = dtRecord;
+                            Opener.pasadatos("coches2");
+                            guardado = true;
+                            TablaVentas.rellenarComboBastidor();
+                            TablaRevisiones.rellenarComboBastidor();
+                        }
+                        catch (Finisar.SQLite.SQLiteException exception)
+                        {
+                            MessageBox.Show(exception.Message);
+                        }
                     }
                     break;
             }
