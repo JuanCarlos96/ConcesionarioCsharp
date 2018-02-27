@@ -275,11 +275,6 @@ namespace ConcesionarioCsharp
             guardado = false;
         }
 
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             switch (e.ColumnIndex)
@@ -400,6 +395,23 @@ namespace ConcesionarioCsharp
         {
             //Oculta el control de la celda (pestaña)
             calendario.Visible = false;
+        }
+
+        private void dataGridView1_CellEndEdit_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentRow.Cells[0].Value.ToString() != "")
+            {
+                string bastidor = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                ConectorSQLite c = new ConectorSQLite();
+                SQLiteCommand consulta = c.DameComando();
+                consulta.CommandText = "SELECT Precio FROM Coche WHERE N_Bastidor = '" + bastidor + "'";
+                SQLiteDataReader reader = consulta.ExecuteReader();
+                while (reader.Read())
+                {
+                    dataGridView1.CurrentRow.Cells[3].Value = reader.GetFloat(0).ToString();
+                }
+                reader.Close();
+            }
         }
     }
 }

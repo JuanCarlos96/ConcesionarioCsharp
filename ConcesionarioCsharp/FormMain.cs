@@ -371,9 +371,9 @@ namespace ConcesionarioCsharp
         {
             SQLiteCommand consulta = con.DameComando();
             consulta.CommandText = sql;
-            SQLiteDataAdapter DataAdap = new SQLiteDataAdapter(consulta);//Hace de intermediario entre la base de datos y el DataGrid
-            DataSet1 Ds = new DataSet1();//Se crea un DataSet
-            DataAdap.Fill(Ds, "Coche");//Se enlaza con el que hemos creado desde la interfaz gráfica
+            SQLiteDataAdapter DataAdap = new SQLiteDataAdapter(consulta);
+            DataSet1 Ds = new DataSet1();
+            DataAdap.Fill(Ds, "Coche");
 
             if (Ds.Tables[0].Rows.Count == 0)
             {
@@ -381,13 +381,13 @@ namespace ConcesionarioCsharp
                 return;
             }
 
-            InformeCoches informe = new InformeCoches(); ;//Se crea el objeto informe
-            informe.Load("..\\..\\CrystalReport1.rpt"); //Dado que el directorio es debug, he de salir a la raiz
-            informe.SetDataSource(Ds);//Se toma el origen de datos del informe
+            InformeCoches informe = new InformeCoches();
+            informe.Load("..\\..\\CrystalReport1.rpt");
+            informe.SetDataSource(Ds);
 
-            ventana_informe.crystalReportViewer1.ReportSource = informe;//Añadimos al Viewer el informe que vamos a mostrar
-            ventana_informe.crystalReportViewer1.Refresh();//Se actualiza el informe
-            ventana_informe.ShowDialog();//Muestro la ventana de diálogo
+            ventana_informe.crystalReportViewer1.ReportSource = informe;
+            ventana_informe.crystalReportViewer1.Refresh();
+            ventana_informe.ShowDialog();
         }
     }
 }
