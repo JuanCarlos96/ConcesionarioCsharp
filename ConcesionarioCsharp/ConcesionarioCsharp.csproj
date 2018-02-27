@@ -85,6 +85,12 @@
       <DependentUpon>InformeCoches.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="InformeVentas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeVentas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="InfoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,10 @@
     <EmbeddedResource Include="InformeCoches.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InformeCoches.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeVentas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InformeVentas.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="InfoVenta.resx">
       <DependentUpon>InfoVenta.cs</DependentUpon>

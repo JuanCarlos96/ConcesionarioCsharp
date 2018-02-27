@@ -336,7 +336,7 @@ namespace ConcesionarioCsharp
 
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start("Manual.pdf");
         }
 
         private void rellenarComboMarcas()
@@ -382,7 +382,36 @@ namespace ConcesionarioCsharp
             }
 
             InformeCoches informe = new InformeCoches();
-            informe.Load("..\\..\\CrystalReport1.rpt");
+            informe.Load("..\\..\\InformeCoches.rpt");
+            informe.SetDataSource(Ds);
+
+            ventana_informe.crystalReportViewer1.ReportSource = informe;
+            ventana_informe.crystalReportViewer1.Refresh();
+            ventana_informe.ShowDialog();
+        }
+
+        private void informeDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SQLiteCommand consulta = con.DameComando();
+            consulta.CommandText = "SELECT * FROM Cliente";
+            SQLiteDataAdapter DataAdap = new SQLiteDataAdapter(consulta);
+            DataSet1 Ds = new DataSet1();
+            DataAdap.Fill(Ds, "Cliente");
+
+            consulta.CommandText = "SELECT * FROM Coche";
+            DataAdap.Fill(Ds, "Coche");
+
+            consulta.CommandText = "SELECT * FROM Venta";
+            DataAdap.Fill(Ds, "Venta");
+
+            if (Ds.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos que mostrar, revisar la SQL", "Informe");
+                return;
+            }
+
+            InformeVentas informe = new InformeVentas();
+            informe.Load("..\\..\\InformeVentas.rpt");
             informe.SetDataSource(Ds);
 
             ventana_informe.crystalReportViewer1.ReportSource = informe;

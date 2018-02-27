@@ -34,6 +34,8 @@
             this.reiniciarBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeDeCochesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbMarcas = new System.Windows.Forms.ToolStripComboBox();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,8 +47,7 @@
             this.revisiones = new System.Windows.Forms.ToolStripButton();
             this.ventas = new System.Windows.Forms.ToolStripButton();
             this.clientes = new System.Windows.Forms.ToolStripButton();
-            this.informeDeCochesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbMarcas = new System.Windows.Forms.ToolStripComboBox();
+            this.informeDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,10 +94,25 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.informeDeCochesToolStripMenuItem});
+            this.informeDeCochesToolStripMenuItem,
+            this.informeDeVentasToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(66, 20);
             this.toolStripMenuItem2.Text = "&Informes";
+            // 
+            // informeDeCochesToolStripMenuItem
+            // 
+            this.informeDeCochesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cbMarcas});
+            this.informeDeCochesToolStripMenuItem.Name = "informeDeCochesToolStripMenuItem";
+            this.informeDeCochesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.informeDeCochesToolStripMenuItem.Text = "Informe de Coches";
+            // 
+            // cbMarcas
+            // 
+            this.cbMarcas.Name = "cbMarcas";
+            this.cbMarcas.Size = new System.Drawing.Size(152, 23);
+            this.cbMarcas.TextChanged += new System.EventHandler(this.cbMarcas_TextChanged);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -214,19 +230,12 @@
             this.clientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.clientes.Click += new System.EventHandler(this.clientes_Click);
             // 
-            // informeDeCochesToolStripMenuItem
+            // informeDeVentasToolStripMenuItem
             // 
-            this.informeDeCochesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cbMarcas});
-            this.informeDeCochesToolStripMenuItem.Name = "informeDeCochesToolStripMenuItem";
-            this.informeDeCochesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.informeDeCochesToolStripMenuItem.Text = "Informe de Coches";
-            // 
-            // cbMarcas
-            // 
-            this.cbMarcas.Name = "cbMarcas";
-            this.cbMarcas.Size = new System.Drawing.Size(152, 23);
-            this.cbMarcas.TextChanged += new System.EventHandler(this.cbMarcas_TextChanged);
+            this.informeDeVentasToolStripMenuItem.Name = "informeDeVentasToolStripMenuItem";
+            this.informeDeVentasToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.informeDeVentasToolStripMenuItem.Text = "Informe de Ventas";
+            this.informeDeVentasToolStripMenuItem.Click += new System.EventHandler(this.informeDeVentasToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -271,6 +280,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripMenuItem informeDeCochesToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox cbMarcas;
+        private System.Windows.Forms.ToolStripMenuItem informeDeVentasToolStripMenuItem;
     }
 }
 
